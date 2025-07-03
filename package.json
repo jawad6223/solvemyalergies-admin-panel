@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.4",
+    "highcharts": "^12.3.0",
+    "highcharts-react-official": "^3.2.2",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

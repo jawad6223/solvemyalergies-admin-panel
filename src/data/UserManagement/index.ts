@@ -193,3 +193,22 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     }
 ];
+
+export interface UserManagementDetailItem {
+    array: {
+        label: string;
+        data: string;
+    }[];
+}
+
+export const UserManagementDetailData: UserManagementDetailItem[] = [
+    {
+        array: [
+            { label: "Full Name:", data: "Marilyn Herwitz" },
+            { label: "Joined On:", data: "Mar 10, 2024" },
+            { label: "Email ID:", data: "email@email.com" },
+            { label: "session Days Completed:", data: "Day 9" },
+            { label: "Phone Number:", data: "+33 123 45 67 89 0" },
+        ]
+    },
+];

@@ -14,7 +14,6 @@ interface BreadCrumProps {
 const BreadCrum: React.FC<BreadCrumProps> = ({ onSearch, setSelectedFilter, selectedFilter }) => {
 
     const [isOpen, setIsOpen] = useState(false);
-    
     const dropdownRef = useRef<HTMLDivElement>(null);
     const options = ['Active', 'Blocked'];
 
