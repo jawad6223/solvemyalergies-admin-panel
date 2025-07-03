@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import BreadCrum from "./BreadCrum";
 import { UserManagementData as initialData } from "@/data/UserManagement";
@@ -11,6 +12,7 @@ import { MdBlock, MdOutlineKeyboardDoubleArrowLeft, MdKeyboardArrowLeft, MdOutli
 
 const UserManagement: React.FC = () => {
 
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [data, setData] = useState(initialData)
@@ -90,8 +92,6 @@ const UserManagement: React.FC = () => {
     setOpenDropdownIndex(null);
   };
 
-
-
   return (
     <div className="">
       <BreadCrum onSearch={setSearchTerm} setSelectedFilter={setSelectedFilter} selectedFilter={selectedFilter} />
@@ -143,7 +143,7 @@ const UserManagement: React.FC = () => {
               </tr>
             ) : (
               currentItems.map((user, index) => (
-                <tr key={index} className="hover:bg-gray-50 cursor-pointer">
+                <tr key={index} className="hover:bg-gray-50 cursor-pointer" onClick={() => router.push(`/usermanagement/${index}`)}>
                   <td className="px-4 py-4">
                     <label className="inline-flex items-center cursor-pointer">
                       <input
