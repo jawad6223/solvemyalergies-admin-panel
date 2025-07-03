@@ -6,8 +6,6 @@ import Image from "next/image";
 import Messages from "@/Icons/Messages";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
-
-
 const Header = () => {
 
   const [open, setOpen] = useState(false);
@@ -35,7 +33,7 @@ const Header = () => {
 
 
   return (
-    <header className="w-auto h-[70px] fixed top-0 left-[250px] right-0 bg-white shadow-sm px-4 flex items-center justify-between z-20">
+    <header className="w-auto h-[70px] fixed top-0 left-[250px] right-0 bg-white shadow-xs px-4 flex items-center justify-between z-20">
       <div className="flex items-center px-3 gap-2 bg-[#F5F6FA] border border-[#D5D5D5] rounded-full w-[388px] h-[38px] focus-within:ring-1 focus-within:ring-[#11401C] focus-within:border-[#11401C] transition-all">
         <IoIosSearch size={20} />
         <input
@@ -78,16 +76,19 @@ const Header = () => {
             )}
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 cursor-pointer">
           <Image
-            src="/images/Header/user.png"
+            src="/images/Header/user.svg"
             alt="User Avatar"
             width={44}
             height={44}
           />
-          <div className="text-sm leading-tight">
-            <p className="font-semibold text-gray-800">Kathy Platt</p>
-            <p className="text-gray-500">Admin</p>
+          <div className="flex flex-col gap-0.5">
+            <p className="font-semibold text-[#404040] text-[14px]">Kathy Platt</p>
+            <p className="text-[#565656] font-normal text-[12px]">Admin</p>
+          </div>
+          <div className="rounded-full border border-[#5C5C5C] flex items-center justify-center w-[18px] h-[18px]">
+            <MdKeyboardArrowDown />
           </div>
         </div>
       </div>
