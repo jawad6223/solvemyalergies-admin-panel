@@ -7,13 +7,14 @@ import Export from "@/Icons/Export";
 
 interface BreadCrumProps {
     onSearch: (term: string) => void;
-    onOpen: () => void;
+    setSelectedFilter: (filter: string | null) => void;
+    selectedFilter: string | null;
 }
 
-const BreadCrum: React.FC<BreadCrumProps> = ({ onSearch, onOpen }) => {
+const BreadCrum: React.FC<BreadCrumProps> = ({ onSearch, setSelectedFilter, selectedFilter }) => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+    
     const dropdownRef = useRef<HTMLDivElement>(null);
     const options = ['Active', 'Blocked'];
 
@@ -31,22 +32,18 @@ const BreadCrum: React.FC<BreadCrumProps> = ({ onSearch, onOpen }) => {
     }, []);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
-
-    const toggleFilter = (option: string) => {
-        setSelectedFilters((prev) =>
-            prev.includes(option)
-                ? prev.filter((item) => item !== option)
-                : [...prev, option]
-        );
+    const handleSelect = (option: string) => {
+        setSelectedFilter(option);
     };
 
     const handleReset = () => {
-        setSelectedFilters([]);
+        setSelectedFilter(null);
     };
 
-    const handleRemoveTag = (tag: string) => {
-        setSelectedFilters((prev) => prev.filter((item) => item !== tag));
+    const handleRemoveTag = () => {
+        setSelectedFilter(null);
     };
+
 
     return (
         <div className="space-y-3">
@@ -75,37 +72,39 @@ const BreadCrum: React.FC<BreadCrumProps> = ({ onSearch, onOpen }) => {
                                 className="cursor-pointer"
                                 onClick={toggleDropdown}
                             />
-                            {selectedFilters.map((filter) => (
+                            {selectedFilter && (
                                 <div
-                                    key={filter}
                                     className="flex items-center justify-between border border-[#14A155] text-[#333333] px-2 py-0.5 rounded-full text-[12px] font-normal w-[77px]"
                                 >
-                                    {filter}
+                                    {selectedFilter}
                                     <button
-                                        onClick={() => handleRemoveTag(filter)}
+                                        onClick={handleRemoveTag}
                                         className="text-sm font-bold text-[#999999] cursor-pointer"
                                     >
                                         ×
                                     </button>
                                 </div>
-                            ))}
+                            )}
                         </div>
 
                         {isOpen && (
                             <div className="absolute z-50 border border-[#DFDFDF] mt-2 w-[220px] bg-white shadow-lg rounded-lg p-4">
                                 <p className="text-[12px] font-normal text-[#71717A] mb-[8px]">Filter</p>
                                 {options.map((option) => (
-                                    <label key={option} className="flex items-center gap-2 mb-2">
+                                    <label key={option} className="flex items-center gap-2 mb-2 cursor-pointer">
                                         <input
-                                            type="checkbox"
-                                            checked={selectedFilters.includes(option)}
-                                            onChange={() => toggleFilter(option)}
+                                            type="radio"
+                                            name="filter"
+                                            checked={selectedFilter === option}
+                                            onChange={() => handleSelect(option)}
                                             className="peer hidden"
                                         />
                                         <div className="w-4 h-4 rounded border border-[#828282] bg-white flex items-center justify-center peer-checked:border-[#21BA45] peer-checked:bg-[#21BA45]">
-                                            <Image src="/images/User/tick.svg" alt="check" width={12} height={7} />
+                                            {selectedFilter === option && (
+                                                <Image src="/images/User/tick.svg" alt="check" width={12} height={7} />
+                                            )}
                                         </div>
-                                        <span className="text-[#333333] text-[14px] font-normal cursor-pointer">{option}</span>
+                                        <span className="text-[#333333] text-[14px] font-normal">{option}</span>
                                     </label>
                                 ))}
                                 <div className="flex items-center gap-8 mt-4">
@@ -126,7 +125,7 @@ const BreadCrum: React.FC<BreadCrumProps> = ({ onSearch, onOpen }) => {
                         )}
                     </div>
                 </div>
-                <button onClick={onOpen} className="flex items-center gap-2 cursor-pointer border border-[#CCCCCC] rounded-lg px-[12px] py-[7px] text-[#11401C] font-semibold text-[14px]">
+                <button className="flex items-center gap-2 cursor-pointer border border-[#CCCCCC] rounded-lg px-[12px] py-[7px] text-[#11401C] font-semibold text-[14px]">
                     <Export />
                     Export
                 </button>
