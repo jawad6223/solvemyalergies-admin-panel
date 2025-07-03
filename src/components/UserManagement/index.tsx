@@ -6,6 +6,7 @@ import BreadCrum from "./BreadCrum";
 import { UserManagementData as initialData } from "@/data/UserManagement";
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { AiOutlineEye } from 'react-icons/ai';
+import { GrRotateLeft } from "react-icons/gr";
 import { MdBlock, MdOutlineKeyboardDoubleArrowLeft, MdKeyboardArrowLeft, MdOutlineKeyboardDoubleArrowRight, MdKeyboardArrowRight } from 'react-icons/md';
 
 const UserManagement: React.FC = () => {
@@ -77,6 +78,18 @@ const UserManagement: React.FC = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  const toggleBlockStatus = (email: string) => {
+    setData((prevData) =>
+      prevData.map((user) =>
+        user.email === email
+          ? { ...user, status: user.status === "Active" ? "Blocked" : "Active" }
+          : user
+      )
+    );
+    setOpenDropdownIndex(null);
+  };
+
 
 
   return (
@@ -182,9 +195,18 @@ const UserManagement: React.FC = () => {
                             <AiOutlineEye className="w-4 h-4" /> View
                           </button>
                           <button
+                            onClick={() => toggleBlockStatus(user.email)}
                             className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#717171] font-medium border-b border-[#B3B3B3]"
                           >
-                            <MdBlock className="w-4 h-4" /> Block
+                            {user.status === "Active" ? (
+                              <>
+                                <MdBlock className="w-4 h-4" /> Block
+                              </>
+                            ) : (
+                              <>
+                                <GrRotateLeft className="w-4 h-4" /> Unblock
+                              </>
+                            )}
                           </button>
                         </div>
                       )}
@@ -228,32 +250,29 @@ const UserManagement: React.FC = () => {
             <button
               onClick={() => setCurrentPage(1)}
               className="border border-[#E9E9E9] w-[40px] h-[36px] flex items-center justify-center cursor-pointer rounded-[4px] text-[#626262]"
-              
             >
               <MdOutlineKeyboardDoubleArrowLeft />
             </button>
             <button
               onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
               className="border border-[#E9E9E9] w-[40px] h-[36px] flex items-center justify-center cursor-pointer rounded-[4px] text-[#626262]">
-              
               <MdKeyboardArrowLeft />
             </button>
             <button
               onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
               className="border border-[#E9E9E9] w-[40px] h-[36px] flex items-center justify-center cursor-pointer rounded-[4px] text-[#626262]"
-              
             >
               <MdKeyboardArrowRight />
             </button>
             <button
               onClick={() => setCurrentPage(totalPages)}
               className="border border-[#E9E9E9] w-[40px] h-[36px] flex items-center justify-center cursor-pointer rounded-[4px] text-[#626262]">
-              
               <MdOutlineKeyboardDoubleArrowRight />
             </button>
           </div>
         </div>
-      )}
+      )
+      }
     </div>
   );
 };
