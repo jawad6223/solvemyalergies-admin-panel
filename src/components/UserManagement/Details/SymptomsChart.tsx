@@ -13,7 +13,6 @@ const SymptomsChart = () => {
         chart: {
             type: "line",
             height: 300,
-            width: 1205,
             spacing: [10, 10, 15, 10],
             backgroundColor: "white",
         },
@@ -115,7 +114,7 @@ const SymptomsChart = () => {
     }
 
     return (
-        <div className={`rounded-xl shadow-sm border border-gray-200 p-4 bg-white w-full${isFullScreen ? ' fixed inset-0 z-50 flex flex-col justify-center bg-white' : ''}`} style={isFullScreen ? { width: '100%', height: '100vh' } : {}}>
+        <div className={`rounded-xl shadow-sm border border-gray-200 p-4 bg-white transition-all duration-300 w-[99.7%] ${isFullScreen ? ' fixed inset-0 z-50 flex flex-col justify-center bg-white overflow-hidden' : ''}`}>
             <div className="flex justify-between items-center mb-4">
                 <p className="text-[#11401C] font-semibold text-[20px]">Symptoms</p>
                 <div className="relative">
@@ -140,7 +139,8 @@ const SymptomsChart = () => {
                     )}
                 </div>
             </div>
-            <HighchartsReact highcharts={Highcharts} options={options} />
+
+                <HighchartsReact highcharts={Highcharts} options={options} />
             <div className="flex justify-center gap-4 text-sm mt-4">
                 <div className="flex items-center text-[#939393] font-medium gap-1">
                     <div className="w-4 h-4 bg-[#DB3B21]" />

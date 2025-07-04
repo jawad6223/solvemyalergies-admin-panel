@@ -35,10 +35,10 @@ const UserManagementDetail: React.FC<UserManagementDetailProps> = ({ id }) => {
     console.log(id, "id>>>>>>>");
 
     return (
-        <div className="">
+        <div>
             <BreadCrum />
             <div className="flex items-center gap-4 mt-4">
-                <div className="w-full lg:w-[70%] bg-white rounded-[12px] shadow-sm px-[22px] py-[22px]">
+                <div className="w-full lg:w-[69%] bg-white rounded-[12px] shadow-sm px-[22px] py-[22px]">
                     <div className="flex items-center justify-between">
                         <p className="text-[#11401C] font-semibold text-[20px]">Profile</p>
                         <div className="flex items-center gap-2">

@@ -1,8 +1,73 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Dialog } from '@headlessui/react';
 import { TiTick } from 'react-icons/ti';
+import { UserManagementDetailModalData } from '@/data/UserManagement';
+import { IoCloseCircleOutline } from "react-icons/io5";
+
+const ImageUpload = () => {
+    const [image, setImage] = useState<string | null>(null);
+    const [fileName, setFileName] = useState("");
+    const [dateTime, setDateTime] = useState("");
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setImage(URL.createObjectURL(file));
+            const base = file.name.split(/[ .]/)[0];
+            setFileName(`${base}.png`);
+            const now = new Date();
+            const date = now.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            const time = now.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            setDateTime(`${date}, ${time}`);
+        }
+    };
+
+    const handleDelete = () => {
+        setImage(null);
+        setFileName("");
+        setDateTime("");
+    };
+
+    return (
+        <div>
+            {!image && (
+                <input type="file" accept="image/*" onChange={handleImageChange} className='cursor-pointer' />
+            )}
+            {image && (
+                <>
+                    <div className="flex flex-col justify-between gap-2">
+                        <div className="flex items-center justify-between">
+                            <span className="text-[#717171] font-medium">{fileName}</span>
+                            <Image
+                                src="/images/User/delete.svg"
+                                alt="delete"
+                                width={20}
+                                height={20}
+                                className="cursor-pointer"
+                                onClick={handleDelete}
+                            />
+                        </div>
+                    </div>
+                    <div className="text-xs text-[#717171] mt-2">
+                        {dateTime}
+                    </div>
+                </>
+            )}
+        </div>
+    );
+};
 
 const Calendar = () => {
     const [selectedDay, setSelectedDay] = useState<number | null>(null);
@@ -47,21 +112,78 @@ const Calendar = () => {
                 })}
             </div>
 
-            <Dialog open={isOpen} onClose={closeModal} className="relative z-50">
-                <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-                <div className="fixed inset-0 flex items-center justify-center p-4">
-                    <Dialog.Panel className="bg-white p-6 rounded-lg max-w-sm w-full shadow-lg">
-                        <Dialog.Title className="text-lg font-bold mb-2">Session {selectedDay}</Dialog.Title>
-                        <p>This is content for session {selectedDay}.</p>
-                        <button
-                            onClick={closeModal}
-                            className="mt-4 px-4 py-2 bg-gradient-to-r from-[#11401C] to-[#859B5B] text-white rounded hover:opacity-90"
-                        >
-                            Close
-                        </button>
-                    </Dialog.Panel>
+            {isOpen && (
+                <div className="fixed inset-0 bg-[#BABBBB]/40 bg-opacity-50 flex items-center justify-center z-20">
+                    <div className="bg-white p-4 rounded-lg max-w-2xl shadow-lg overflow-x-hidden overflow-y-auto max-h-[85vh] scrollbar-hide">
+                        <div className="flex items-center justify-between">
+                            <div className="text-[#11401C] font-semibold text-[24px] mb-2">Day {selectedDay}</div>
+                            <IoCloseCircleOutline className="w-6 h-6 text-[#11401C] cursor-pointer" onClick={closeModal} />
+                        </div>
+                        {UserManagementDetailModalData.map((item, index) => (
+                            <div key={index} className="space-y-3 mt-4">
+                                <p className='text-[#11401C] font-semibold'>{item.question}</p>
+                                <div className='flex items-center gap-2'>
+                                    <p className='text-[#484C52] font-semibold underline'>{item.response}</p>
+                                    <p className='text-[#717171] font-medium'>{item.answer}</p>
+                                </div>
+                                <p className='text-[#11401C] font-semibold'>{item.questionone}</p>
+                                <div className='flex gap-2'>
+                                    <p className='text-[#484C52] font-semibold underline'>{item.response}</p>
+                                    <div className="flex flex-col gap-2">
+                                        {item.array.map((item, index) => (
+                                            <div key={index} className='flex items-center gap-3'>
+                                                <div className='flex items-center gap-1 flex-1'>
+                                                    <p className={`font-bold ${index === 0 ? 'text-[#DB3B21]' : ''} ${index === 1 ? 'text-[#11401C]' : ''} ${index === 2 ? 'text-[#B1A9A9]' : ''}`}>{item.symptom}:</p>
+                                                    <p className='text-[#717171] font-medium'>{item.title}</p>
+                                                </div>
+                                                <p className='text-[#717171] font-medium'>{item.rating}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <p className='text-[#11401C] font-semibold'>{item.description}</p>
+                                <p className='text-[#484C52] font-semibold underline'>{item.response}</p>
+                                <p className='text-[#717171] font-medium'>{item.ratingthree}</p>
+                                <p className='text-[#11401C] font-semibold'>{item.questiontwo}</p>
+                                <div className='flex gap-2'>
+                                    <p className='text-[#484C52] font-semibold underline'>{item.response}</p>
+                                    <div className='grid grid-cols-2 gap-x-[6rem] gap-y-2'>
+                                        {item.arrayone.map((item, index) => (
+                                            <p key={index} className='text-[#717171] font-medium'>{item.title}</p>
+                                        ))}
+                                    </div>
+                                </div>
+                                <p className='text-[#11401C] font-semibold'>{item.questionthree}</p>
+                                <div className='flex gap-2'>
+                                    <p className='text-[#484C52] font-semibold underline'>{item.response}</p>
+                                    <div className='grid grid-cols-2 gap-x-[6rem]'>
+                                        {item.arraytwo.map((item, index) => (
+                                            <p key={index} className='text-[#717171] font-medium'>{item.title}</p>
+                                        ))}
+                                    </div>
+                                </div>
+                                <p className='text-[#11401C] font-semibold'>{item.questionfour}</p>
+                                <div className='flex gap-2'>
+                                    <p className='text-[#484C52] font-semibold underline'>{item.response}</p>
+                                    <div className='grid grid-cols-2 gap-x-[18rem] gap-y-2'>
+                                        {item.arraythree.map((item, index) => (
+                                            <p key={index} className='text-[#717171] font-medium'>{item.title}</p>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className='grid grid-cols-2 gap-2'>
+                                    <div className="border border-[#EAEAEA] rounded-[6px] px-[8px] py-[6px]">
+                                        <ImageUpload />
+                                    </div>
+                                    <div className="border border-[#EAEAEA] rounded-[6px] px-[8px] py-[6px]">
+                                        <ImageUpload />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </Dialog>
+            )}
         </div>
     );
 };

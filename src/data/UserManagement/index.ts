@@ -212,3 +212,98 @@ export const UserManagementDetailData: UserManagementDetailItem[] = [
         ]
     },
 ];
+
+export interface UserManagementDetailModalItem {
+    day: string;
+    question: string;
+    response: string;
+    answer: string;
+    questionone: string;
+    array:{
+        symptom: string;
+        title: string;
+        rating: string;
+    }[];
+    description: string;
+    ratingthree: string;
+    questiontwo: string;
+    arrayone: {
+        title: string;
+    }[];
+    questionthree: string;
+    arraytwo: {
+        title: string;
+    }[];
+    questionfour: string;
+    arraythree: {
+        title: string;
+    }[];
+}
+
+export const UserManagementDetailModalData: UserManagementDetailModalItem[] = [
+    {
+        day: "Day 1",
+        question: "Q1: When you have allergy symptoms, how badly are you affected?",
+        response: "Response",
+        answer: "I hardly notice them",
+        questionone: "Q2: Please select top 3 symptoms that apply to you:",
+        array: [
+            {
+                symptom: "Symptom 1",
+                title: "Headache",
+                rating: "Rating: 10",
+            },
+            {
+                symptom: "Symptom 2",
+                title: "Eye symptoms",
+                rating: "Rating: 7",
+            },
+            {
+                symptom: "Symptom 3",
+                title: "Fatigue",
+                rating: "Rating: 2",
+            },
+        ],
+        description: "Previous day’s sleep and overall rest",
+        ratingthree: "Rating: 6",
+        questiontwo: "Q3: What are the symptoms of your headache? Select up to 4:",
+        arrayone: [
+            {
+                title: "Throbbing headache",
+            },
+            {
+                title: "Affects vision",
+            },
+            {
+                title: "Sinus headache",
+            },
+            {
+                title: "Located behind eyes",
+            }
+        ],
+        questionthree: "Q4: Please select all that apply to fatigue:",
+        arraytwo: [
+            {
+                title: "I feel fatigue all day",
+            },
+            {
+                title: "Activities exhaust me",
+            },
+        ],
+        questionfour: "Q5: What are your eye symptoms? Select up to 4:",
+        arraythree: [
+            {
+                title: "Watery",
+            },
+            {
+                title: "Swollen",
+            },
+            {
+                title: "Red",
+            },
+            {
+                title: "Scratchy",
+            },
+        ],
+    },
+];
