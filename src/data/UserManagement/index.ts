@@ -2,6 +2,7 @@ import { IconType } from "react-icons";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 export interface UserManagementItem {
+    id: number;
     image: string;
     name: string;
     email: string;
@@ -13,6 +14,7 @@ export interface UserManagementItem {
 
 export const UserManagementData: UserManagementItem[] = [
     {
+        id: 1,
         image: "/images/User/person.svg",
         name: "Marilyn Herwitz",
         email: "email@email.com",
@@ -22,6 +24,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 2,
         image: "/images/User/person.svg",
         name: "Marcus Bergson",
         email: "email1@email.com",
@@ -31,7 +34,8 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
-        image: "/images/User/person.svg",
+        id: 3,
+        image: "/images/User/person.svg",   
         name: "Marilyn Herwitz",
         email: "email2@email.com",
         date: "Mar 10, 2024",
@@ -40,7 +44,8 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
-        image: "/images/User/person.svg",
+        id: 4,
+        image: "/images/User/person.svg",   
         name: "Marcus Bergson",
         email: "email3@email.com",
         date: "Mar 10, 2024",
@@ -49,7 +54,8 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
-        image: "/images/User/person.svg",
+        id: 5,
+        image: "/images/User/person.svg",       
         name: "Marilyn Herwitz",
         email: "email4@email.com",
         date: "Mar 10, 2024",
@@ -58,6 +64,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 6,
         image: "/images/User/person.svg",
         name: "Marcus Bergson",
         email: "email5@email.com",
@@ -67,6 +74,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 7,
         image: "/images/User/person.svg",
         name: "Marilyn Herwitz",
         email: "email6@email.com",
@@ -76,6 +84,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 8,
         image: "/images/User/person.svg",
         name: "Marcus Bergson",
         email: "email7@email.com",
@@ -85,6 +94,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 9,
         image: "/images/User/person.svg",
         name: "Marilyn Herwitz",
         email: "email8@email.com",
@@ -94,6 +104,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 10,
         image: "/images/User/person.svg",
         name: "Jakob",
         email: "email9@email.com",
@@ -103,6 +114,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 11,
         image: "/images/User/person.svg",
         name: "Marilyn Herwitz",
         email: "email@email.com",
@@ -112,6 +124,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 12,
         image: "/images/User/person.svg",
         name: "Marcus Bergson",
         email: "email1@email.com",
@@ -121,6 +134,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 13,
         image: "/images/User/person.svg",
         name: "Marilyn Herwitz",
         email: "email2@email.com",
@@ -130,6 +144,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 14,
         image: "/images/User/person.svg",
         name: "Marcus Bergson",
         email: "email3@email.com",
@@ -139,6 +154,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 15,
         image: "/images/User/person.svg",
         name: "Marilyn Herwitz",
         email: "email4@email.com",
@@ -148,6 +164,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 16,
         image: "/images/User/person.svg",
         name: "Marcus Bergson",
         email: "email5@email.com",
@@ -157,6 +174,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 17,
         image: "/images/User/person.svg",
         name: "Marilyn Herwitz",
         email: "email6@email.com",
@@ -166,6 +184,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 18,
         image: "/images/User/person.svg",
         name: "Marcus Bergson",
         email: "email7@email.com",
@@ -175,6 +194,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 19,
         image: "/images/User/person.svg",
         name: "Marilyn Herwitz",
         email: "email8@email.com",
@@ -184,6 +204,7 @@ export const UserManagementData: UserManagementItem[] = [
         icon: HiOutlineDotsHorizontal,
     },
     {
+        id: 20,
         image: "/images/User/person.svg",
         name: "Jakob",
         email: "email9@email.com",

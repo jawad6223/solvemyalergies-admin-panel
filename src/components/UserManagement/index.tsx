@@ -15,7 +15,7 @@ const UserManagement: React.FC = () => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
-  const [data, setData] = useState(initialData)
+  const [data, setData] = useState(initialData);
   const [selectedRows, setSelectedRows] = useState<string[]>([])
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
@@ -69,26 +69,33 @@ const UserManagement: React.FC = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(`[data-dropdown-index="${openDropdownIndex}"]`)) {
         setOpenDropdownIndex(null);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [openDropdownIndex]);
 
   const toggleBlockStatus = (email: string) => {
-    setData((prevData) =>
-      prevData.map((user) =>
+    setData(prevData =>
+      prevData.map(user =>
         user.email === email
-          ? { ...user, status: user.status === "Active" ? "Blocked" : "Active" }
+          ? {
+            ...user,
+            status: user.status === "Active" ? "Blocked" : "Active",
+            activity: "Just Now"
+          }
           : user
       )
     );
+    setOpenDropdownIndex(null);
+  };
+
+  const handleView = (userId: number) => {
+    router.push(`/usermanagement/${userId}`);
     setOpenDropdownIndex(null);
   };
 
@@ -143,7 +150,7 @@ const UserManagement: React.FC = () => {
               </tr>
             ) : (
               currentItems.map((user, index) => (
-                <tr key={index} className="hover:bg-gray-50 cursor-pointer" onClick={() => router.push(`/usermanagement/${index}`)}>
+                <tr key={index} className="hover:bg-gray-50 cursor-pointer">
                   <td className="px-4 py-4">
                     <label className="inline-flex items-center cursor-pointer">
                       <input
@@ -183,19 +190,26 @@ const UserManagement: React.FC = () => {
                   </td>
                   <td className="px-4 py-4 text-[#222222] font-medium text-[14px] whitespace-nowrap">{user.activity}</td>
                   <td className="px-4 py-4 flex justify-center whitespace-nowrap">
-                    <div className="relative" ref={dropdownRef}>
+                    <div className="relative" ref={dropdownRef} data-dropdown-index={index}>
                       <button className="text-[#000000] cursor-pointer" onClick={() => toggleDropdown(index)}>
                         <user.icon className="w-5 h-5" />
                       </button>
                       {openDropdownIndex === index && (
                         <div className="absolute right-0 mt-0 w-[127px] bg-white rounded-[6px] shadow-lg border border-[#B3B3B3] z-50">
                           <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleView(user.id);
+                            }}
                             className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#11401C] font-medium border-b border-[#B3B3B3]"
                           >
                             <AiOutlineEye className="w-4 h-4" /> View
                           </button>
                           <button
-                            onClick={() => toggleBlockStatus(user.email)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleBlockStatus(user.email);
+                            }}
                             className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#717171] font-medium border-b border-[#B3B3B3]"
                           >
                             {user.status === "Active" ? (
