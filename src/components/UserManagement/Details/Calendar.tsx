@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Dialog } from '@headlessui/react';
 import { TiTick } from 'react-icons/ti';
 import { UserManagementDetailModalData } from '@/data/UserManagement';
 import { IoCloseCircleOutline } from "react-icons/io5";
