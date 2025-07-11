@@ -29,7 +29,7 @@ const Sidebar: React.FC<Props> = ({ menus }) => {
                   <div className={`${(item.link !== "/" && location.startsWith(item.link || "")) ? "bg-[#11401C] rounded-tr-md rounded-br-md absolute top-0 -left-4 w-1 h-full" : ""}`} />
                   <Link
                     href={item.link || ""}
-                    className={`flex items-center gap-3 p-2 text-[14px] capitalize hover:bg-[#11401C] rounded-md hover:text-white ${(item.link !== "/" && location.startsWith(item.link || "")) ? "bg-[#11401C] font-semibold w-[12rem] text-white pl-3 rounded-md" : "text-[#666666] font-medium w-fit"
+                    className={`flex items-center gap-3 p-2 text-[14px] capitalize rounded-md hover:text-black ${(item.link !== "/" && location.startsWith(item.link || "")) ? "bg-[#11401C] font-semibold w-[12rem] text-white pl-3 rounded-md" : "text-[#666666] font-medium w-fit"
                       } transition-colors duration-300`}
                   >
                     {item.icon && (
