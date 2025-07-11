@@ -79,7 +79,7 @@ const Messages: React.FC = () => {
     <div className="">
       <BreadCrum />
       <div className="flex gap-4 mt-4">
-        <div className="w-[27%] border border-[#B1A9A9] bg-white rounded-[8px] px-[10px] py-[22px]">
+        <div className="w-[28%] border border-[#B1A9A9] bg-white rounded-[8px] px-[10px] py-[22px]">
           <div className="flex items-center gap-3 mb-4">
             <button onClick={() => setActiveTab('All')} className={tabButtonClass('All')}>
               All
@@ -110,7 +110,7 @@ const Messages: React.FC = () => {
               className="w-full text-black outline-none bg-transparent placeholder:text-[#8F9091]"
             />
           </div>
-          <div className='mt-4'>
+          <div className='mt-4 overflow-y-auto scrollbar-hide h-[calc(100vh-313px)]'>
             {filteredMessages.map((section) => (
               <div key={section.label} className="">
                 <h4 className="text-[14px] font-normal text-[#717171] mb-2">{section.label}</h4>
@@ -158,7 +158,7 @@ const Messages: React.FC = () => {
             </div>
           </div>
           {/* Chat Body */}
-          <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6">
+          <div className="flex-1 px-6 py-4 space-y-6 overflow-y-auto scrollbar-hide max-h-[25rem]">
             {messag.map((msg) => (
               <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-start" : "justify-end"} items-end`}>
                 {msg.sender === "user" && (

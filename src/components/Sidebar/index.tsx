@@ -20,7 +20,7 @@ const Sidebar: React.FC<Props> = ({ menus }) => {
           <Image src="/images/logo.svg" alt="logo" width={160} height={42} />
         </Link>
       </div>
-      <nav className="pl-4 relative py-6 space-y-3 2xl:space-y-5 scrollbar-hide overflow-y-auto scrollbar-hide h-[calc(100vh-72px)]">
+      <nav className="pl-4 relative py-6 space-y-3 2xl:space-y-5 overflow-y-auto scrollbar-hide h-[calc(100vh-72px)]">
         {menus.map((sidebarMenu, index) => (
           <div key={index}>
             <ul className="space-y-2">
