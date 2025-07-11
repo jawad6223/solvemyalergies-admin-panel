@@ -90,7 +90,7 @@ const Messages: React.FC = () => {
             <button onClick={() => setActiveTab('Read')} className={tabButtonClass('Read')}>
               Read
               <div className="w-[15px] h-[14px] bg-[#E2E2E2] text-[10px] rounded-[4px] flex items-center justify-center">
-                12
+                5
               </div>
             </button>
             <button onClick={() => setActiveTab('Unread')} className={tabButtonClass('Unread')}>
