@@ -170,7 +170,7 @@ const BreadCrum: React.FC<BreadCrumProps> = ({ onSearch, setSelectedFilter, sele
                                                             )
                                                         )
                                                     }
-                                                    className={`px-2 py-[3px] border border-[#B1A9A9] placeholder-[#4D4D4D] rounded-[4px] ${index === 0 ? "w-[68px]" : "w-[82px]"}`}
+                                                    className={`px-2 py-[3px] border border-[#B1A9A9] placeholder-[#4D4D4D]/20 rounded-[4px] ${index === 0 ? "w-[68px]" : "w-[82px]"}`}
                                                 />
                                                 {field.unit && <span className="text-sm text-gray-500">{field.unit}</span>}
                                             </div>
