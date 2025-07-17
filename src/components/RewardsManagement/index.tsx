@@ -1,25 +1,23 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Image from "next/image";
 import BreadCrum from "./BreadCrum";
 import { RewardsManagementData as initialData } from "@/data/RewardsManagement";
-import { AiOutlineEye } from 'react-icons/ai';
-import { GrRotateLeft } from "react-icons/gr";
-import { MdBlock, MdOutlineKeyboardDoubleArrowLeft, MdKeyboardArrowLeft, MdOutlineKeyboardDoubleArrowRight, MdKeyboardArrowRight } from 'react-icons/md';
+import { MdOutlineKeyboardDoubleArrowLeft, MdKeyboardArrowLeft, MdOutlineKeyboardDoubleArrowRight, MdKeyboardArrowRight } from 'react-icons/md';
+import { RewardsManagementModalData } from "@/data/RewardsManagement";
+import RewardsModal from "./RewardsModal";
 
 const RewardsManagement: React.FC = () => {
 
-    const router = useRouter();
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
     const [data, setData] = useState(initialData);
     const [selectedRows, setSelectedRows] = useState<string[]>([])
-    //   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
-    //   const dropdownRef = useRef<HTMLDivElement>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
     const filteredData = data
         .filter(user =>
@@ -52,40 +50,12 @@ const RewardsManagement: React.FC = () => {
         }
     }
 
-    //   const toggleDropdown = (index: number) => {
-    //     setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
-    //   };
+    const handleActionClick = (index: number) => {
+        const actualIndex = startIndex + index;
+        setSelectedIndex(actualIndex);
+        setModalOpen(true);
+    };
 
-    //   useEffect(() => {
-    //     const handleClickOutside = (e: MouseEvent) => {
-    //       const target = e.target as HTMLElement;
-    //       if (!target.closest(`[data-dropdown-index="${openDropdownIndex}"]`)) {
-    //         setOpenDropdownIndex(null);
-    //       }
-    //     };
-    //     document.addEventListener("mousedown", handleClickOutside);
-    //     return () => document.removeEventListener("mousedown", handleClickOutside);
-    //   }, [openDropdownIndex]);
-
-    //   const toggleBlockStatus = (email: string) => {
-    //     setData(prevData =>
-    //       prevData.map(user =>
-    //         user.email === email
-    //           ? {
-    //             ...user,
-    //             status: user.status === "Active" ? "Blocked" : "Active",
-    //             activity: "Just Now"
-    //           }
-    //           : user
-    //       )
-    //     );
-    //     setOpenDropdownIndex(null);
-    //   };
-
-    //   const handleView = (userId: number) => {
-    //     router.push(`/usermanagement/${userId}`);
-    //     setOpenDropdownIndex(null);
-    //   };
 
     return (
         <div className="">
@@ -151,7 +121,7 @@ const RewardsManagement: React.FC = () => {
                                     <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.redeem}</td>
                                     <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.shared}</td>
                                     <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.balance}</td>
-                                    <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] underline hover:text-[#11401C] cursor-pointer whitespace-nowrap">{user.action}</td>
+                                    <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] underline hover:text-[#11401C] cursor-pointer whitespace-nowrap" onClick={() => handleActionClick(index)}>{user.action}</td>
                                 </tr>
                             ))
                         )}
@@ -213,6 +183,14 @@ const RewardsManagement: React.FC = () => {
                 </div>
             )
             }
+
+            {modalOpen && selectedIndex !== null && (
+                <RewardsModal
+                    isOpen={modalOpen}
+                    onClose={() => setModalOpen(false)}
+                    data={RewardsManagementModalData[selectedIndex]}
+                />
+            )}
         </div>
     );
 };
