@@ -78,8 +78,8 @@ const Messages: React.FC = () => {
   return (
     <div className="">
       <BreadCrum />
-      <div className="flex gap-4 mt-4">
-        <div className="w-[28%] border border-[#B1A9A9] bg-white rounded-[8px] px-[10px] py-[22px]">
+      <div className="flex flex-col sm:flex-row gap-4 mt-4">
+        <div className="w-full sm:w-[35%] lg:w-[34%] xl:w-[34%] 2xl:w-[29%] border border-[#B1A9A9] bg-white rounded-[8px] px-[10px] py-[22px]">
           <div className="flex items-center gap-3 mb-4">
             <button onClick={() => setActiveTab('All')} className={tabButtonClass('All')}>
               All
@@ -136,7 +136,7 @@ const Messages: React.FC = () => {
           </div>
 
         </div>
-        <div className="w-[73%] border border-[#B1A9A9] bg-white rounded-[8px] bg-white flex flex-col justify-between">
+        <div className="w-full sm:w-[66%] lg:w-[67%] xl:w-[67%] 2xl:w-[72%] border border-[#B1A9A9] bg-white rounded-[8px] bg-white flex flex-col justify-between">
           <div className="flex items-center justify-between px-[24px] py-[17px] border-b border-[#AFB8CF]">
             <div className="flex items-center gap-2">
               <div className='relative'>
