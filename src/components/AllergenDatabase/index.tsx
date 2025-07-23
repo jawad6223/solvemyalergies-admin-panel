@@ -33,7 +33,6 @@ const AllergenDatabase: React.FC = () => {
     symptoms: [] as string[],
   };
   const [formDataList, setFormDataList] = useState<typeof initialFormData[]>([]);
-  console.log(formDataList, "test>>>>")
   const [currentForm, setCurrentForm] = useState<typeof initialFormData>({ ...initialFormData });
   const [editingSource, setEditingSource] = useState<"upload" | null>(null);
   const [newSymptom, setNewSymptom] = useState("");
@@ -75,7 +74,6 @@ const AllergenDatabase: React.FC = () => {
     }));
   };
 
-
   const handleUpload = () => {
     if (
       currentForm.title.trim() === ""
@@ -91,7 +89,11 @@ const AllergenDatabase: React.FC = () => {
         );
       }
     } else {
-      setFormDataList((prev) => [...prev, currentForm]);
+      // Add date only for new entries
+      setFormDataList((prev) => [
+        ...prev,
+        { ...currentForm, date: new Date().toISOString() }
+      ]);
     }
 
     setCurrentForm({ ...initialFormData });
@@ -226,8 +228,18 @@ const AllergenDatabase: React.FC = () => {
                     {user.title}
                   </td>
                   <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.title}</td>
-                  <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.symptoms.join(", ")}</td>
-                  <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.title}</td>
+                  <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">
+                    {Array.isArray(user.symptoms) ? user.symptoms.join(", ") : ""}
+                  </td>
+                  <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">
+                    {"date" in user && user.date
+                      ? new Date(user.date as string).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric"
+                        })
+                      : ""}
+                  </td>
                   <td className="px-4 py-4 flex justify-center whitespace-nowrap">
                     <div className="relative" ref={dropdownRef} data-dropdown-index={index}>
                       <button className="text-[#000000] cursor-pointer" onClick={() => toggleDropdown(index)}>
