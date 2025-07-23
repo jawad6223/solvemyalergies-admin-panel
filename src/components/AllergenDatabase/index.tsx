@@ -1,14 +1,11 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Image from "next/image";
 import BreadCrum from "./BreadCrum";
-import { UserManagementData as initialData } from "@/data/UserManagement";
-import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { AiOutlineEye } from 'react-icons/ai';
-import { GrRotateLeft } from "react-icons/gr";
-import { MdBlock, MdOutlineKeyboardDoubleArrowLeft, MdKeyboardArrowLeft, MdOutlineKeyboardDoubleArrowRight, MdKeyboardArrowRight } from 'react-icons/md';
+import { MdOutlineKeyboardDoubleArrowLeft, MdKeyboardArrowLeft, MdOutlineKeyboardDoubleArrowRight, MdKeyboardArrowRight } from 'react-icons/md';
 import Modal from "./Modal";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { FiEdit2 } from "react-icons/fi";
@@ -17,11 +14,10 @@ import { RiDeleteBinLine } from "react-icons/ri";
 
 const AllergenDatabase: React.FC = () => {
 
-  const router = useRouter();
+  // const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
-  const [data, setData] = useState(initialData);
   const [selectedRows, setSelectedRows] = useState<string[]>([])
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -305,7 +301,7 @@ const AllergenDatabase: React.FC = () => {
           </div>
           <div className="flex flex-wrap justify-center items-center gap-2">
             <div className="text-[#313131] text-[14px] font-normal border-r border-[#A6A6A6] pr-3">
-              {currentPage} of {data.length} pages
+              {currentPage} of {formDataList.length} pages
             </div>
             <button
               onClick={() => setCurrentPage(1)}
