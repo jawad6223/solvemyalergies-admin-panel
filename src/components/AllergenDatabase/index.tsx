@@ -10,6 +10,10 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { GrRotateLeft } from "react-icons/gr";
 import { MdBlock, MdOutlineKeyboardDoubleArrowLeft, MdKeyboardArrowLeft, MdOutlineKeyboardDoubleArrowRight, MdKeyboardArrowRight } from 'react-icons/md';
 import Modal from "./Modal";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import { FiEdit2 } from "react-icons/fi";
+import { RiDeleteBinLine } from "react-icons/ri";
+
 
 const AllergenDatabase: React.FC = () => {
 
@@ -19,7 +23,6 @@ const AllergenDatabase: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [data, setData] = useState(initialData);
   const [selectedRows, setSelectedRows] = useState<string[]>([])
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,8 +33,9 @@ const AllergenDatabase: React.FC = () => {
     symptoms: [] as string[],
   };
   const [formDataList, setFormDataList] = useState<typeof initialFormData[]>([]);
+  console.log(formDataList, "test>>>>")
   const [currentForm, setCurrentForm] = useState<typeof initialFormData>({ ...initialFormData });
-  const [editingSource, setEditingSource] = useState<"upload"| null>(null);
+  const [editingSource, setEditingSource] = useState<"upload" | null>(null);
   const [newSymptom, setNewSymptom] = useState("");
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
 
@@ -97,62 +101,51 @@ const AllergenDatabase: React.FC = () => {
   };
 
 
-  // const handleEdit = (index: number, source: "upload") => {
-  //   const listToEdit = source === "upload" ? formDataList : upload;
-  //   const formToEdit = listToEdit[index];
-  //   setCurrentForm(formToEdit);
-  //   setEditingIndex(index);
-  //   setEditingSource(source);
-  //   setIsModalOpen(true);
-  // };
+  const handleEdit = (index: number) => {
+    const formToEdit = formDataList[index];
+    setCurrentForm(formToEdit);
+    setEditingIndex(index);
+    setEditingSource("upload");
+    setIsModalOpen(true);
+  };
 
-  // const handleDelete = (index: number, source: "upload") => {
-  //   if (source === "upload") {
-  //     setFormDataList((prev) => prev.filter((_, i) => i !== index));
-  //   }
-  // };
+  const handleDelete = (index: number) => {
+    if (editingSource === "upload") {
+      setFormDataList((prev) => prev.filter((_, i) => i !== index));
+    }
+  };
 
 
-  const filteredData = data
+  const filteredData = formDataList
     .filter(user =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase())
+      user.title.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .filter(user =>
       selectedFilter
-        ? user.status.toLowerCase().includes(selectedFilter.toLowerCase())
+        ? user.title.toLowerCase().includes(selectedFilter.toLowerCase())
         : true
     );
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentItems = filteredData.slice(startIndex, startIndex + itemsPerPage);
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const totalPages = Math.ceil(formDataList.length / itemsPerPage);
   const itemsPerPageOptions = [10, 20, 30, 50];
 
 
-  const toggleCheckbox = (email: string) => {
+  const toggleCheckbox = (title: string) => {
     setSelectedRows((prev) =>
-      prev.includes(email)
-        ? prev.filter((item) => item !== email)
-        : [...prev, email]
+      prev.includes(title)
+        ? prev.filter((item) => item !== title)
+        : [...prev, title]
     )
   }
 
   const toggleAllCheckboxes = () => {
-    if (selectedRows.length === data.length) {
+    if (selectedRows.length === formDataList.length) {
       setSelectedRows([])
     } else {
-      setSelectedRows(data.map((user) => user.email))
+      setSelectedRows(formDataList.map((user) => user.title))
     }
-  }
-
-  const handleSort = () => {
-    const sorted = [...data].sort((a, b) => {
-      return sortOrder === 'asc'
-        ? a.name.localeCompare(b.name)
-        : b.name.localeCompare(a.name)
-    })
-    setData(sorted)
-    setSortOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'))
   }
 
   const toggleDropdown = (index: number) => {
@@ -170,43 +163,23 @@ const AllergenDatabase: React.FC = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openDropdownIndex]);
 
-  const toggleBlockStatus = (email: string) => {
-    setData(prevData =>
-      prevData.map(user =>
-        user.email === email
-          ? {
-            ...user,
-            status: user.status === "Active" ? "Blocked" : "Active",
-            activity: "Just Now"
-          }
-          : user
-      )
-    );
-    setOpenDropdownIndex(null);
-  };
-
-  const handleView = (userId: number) => {
-    router.push(`/usermanagement/${userId}`);
-    setOpenDropdownIndex(null);
-  };
+  // const handleView = (userId: number) => {
+  //   router.push(`/usermanagement/${userId}`);
+  //   setOpenDropdownIndex(null);
+  // };
 
   return (
     <div className="">
       <BreadCrum onSearch={setSearchTerm} setSelectedFilter={setSelectedFilter} selectedFilter={selectedFilter} onOpen={handleOpenModal} />
-      <div className="mt-4">
-        <p className="text-[#666666] font-semibold">
-          {data.length} Total Users
-        </p>
-      </div>
       <div className="overflow-x-auto rounded-lg border border-[#CCCCCC] mt-4">
         <table className="min-w-full text-sm text-center">
-          <thead className="text-[#484C52] font-medium bg-white border-b border-[#CCCCCC]">
+          <thead className="text-[#484C52] font-medium bg-[#F2F2F2] border-b border-[#CCCCCC]">
             <tr>
-              <th className="px-4 py-3">
+              <th className="px-4 py-4">
                 <label className="inline-flex items-center cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={selectedRows.length === data.length}
+                    checked={formDataList.length > 0 && selectedRows.length === formDataList.length}
                     onChange={toggleAllCheckboxes}
                     className="peer hidden"
                   />
@@ -216,20 +189,14 @@ const AllergenDatabase: React.FC = () => {
                 </label>
               </th>
               <th
-                className={`px-4 py-3 cursor-pointer whitespace-nowrap flex items-center justify-between ${sortOrder === 'asc' ? 'bg-[#F2F3F7]' : ''}`}
-                onClick={handleSort}
+                className={`px-4 py-4 cursor-pointer text-left whitespace-nowrap`}
               >
-                Name
-                {sortOrder === 'asc' ? (
-                  <FaArrowUp className="text-xs text-gray-600" />
-                ) : (
-                  <FaArrowDown className="text-xs text-gray-600" />
-                )}
+                Allergen ID
               </th>
-              <th className="px-4 py-3 whitespace-nowrap">Joined On</th>
-              <th className="px-4 py-3 whitespace-nowrap">Status</th>
-              <th className="px-4 py-3 whitespace-nowrap">Last Activity</th>
-              <th className="px-4 py-3 whitespace-nowrap">Actions</th>
+              <th className="px-4 py-4 whitespace-nowrap">Allergen Name</th>
+              <th className="px-4 py-4 whitespace-nowrap">Common Symptoms</th>
+              <th className="px-4 py-4 whitespace-nowrap">Added Date</th>
+              <th className="px-4 py-4 whitespace-nowrap">Status</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-[#CCCCCC]">
@@ -246,8 +213,8 @@ const AllergenDatabase: React.FC = () => {
                     <label className="inline-flex items-center cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={selectedRows.includes(user.email)}
-                        onChange={() => toggleCheckbox(user.email)}
+                        checked={selectedRows.includes(user.title)}
+                        onChange={() => toggleCheckbox(user.title)}
                         className="peer hidden"
                       />
                       <div className="w-4 h-4 rounded border border-[#828282] bg-white flex items-center justify-center peer-checked:border-[#21BA45] peer-checked:bg-[#21BA45]">
@@ -255,42 +222,23 @@ const AllergenDatabase: React.FC = () => {
                       </div>
                     </label>
                   </td>
-                  <td className="px-4 py-4 flex items-center gap-3 text-left whitespace-nowrap">
-                    <Image
-                      src={user.image}
-                      alt="User"
-                      width={25}
-                      height={25}
-                    />
-                    <div>
-                      <p className="font-medium text-[#484C52]">{user.name}</p>
-                      <p className="text-[12px] font-normal text-[#808080]">{user.email}</p>
-                    </div>
+                  <td className="px-4 py-4 text-left whitespace-nowrap font-medium text-[#484C52]">
+                    {user.title}
                   </td>
-                  <td className="px-4 py-4 text-[#222222] font-medium text-[14px] whitespace-nowrap">{user.date}</td>
-                  <td className="px-4 py-4 flex justify-center whitespace-nowrap">
-                    <div
-                      className={`flex items-center gap-2 px-[22px] w-fit py-[10px] rounded-[12px] text-[14px] font-medium ${user.status === 'Active'
-                        ? 'bg-[#E9F8EC] text-[#21BA45]'
-                        : 'bg-[#FBE9E9] text-[#DB2828]'
-                        }`}
-                    >
-                      <div className="h-[8px] w-[8px] rounded-full bg-current"></div>
-                      {user.status}
-                    </div>
-                  </td>
-                  <td className="px-4 py-4 text-[#222222] font-medium text-[14px] whitespace-nowrap">{user.activity}</td>
+                  <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.title}</td>
+                  <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.symptoms.join(", ")}</td>
+                  <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.title}</td>
                   <td className="px-4 py-4 flex justify-center whitespace-nowrap">
                     <div className="relative" ref={dropdownRef} data-dropdown-index={index}>
                       <button className="text-[#000000] cursor-pointer" onClick={() => toggleDropdown(index)}>
-                        <user.icon className="w-5 h-5" />
+                        <HiOutlineDotsHorizontal className="w-5 h-5" />
                       </button>
                       {openDropdownIndex === index && (
                         <div className="absolute right-0 mt-0 w-[127px] bg-white rounded-[6px] shadow-lg border border-[#B3B3B3] z-50">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              handleView(user.id);
+                              // handleView(user.title);
                             }}
                             className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#11401C] font-medium border-b border-[#B3B3B3]"
                           >
@@ -299,19 +247,14 @@ const AllergenDatabase: React.FC = () => {
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              toggleBlockStatus(user.email);
+                              handleEdit(index);
                             }}
-                            className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#717171] font-medium border-b border-[#B3B3B3]"
+                            className="w-full cursor-pointer flex items-center gap-2 pl-[12px] py-[12px] text-[#717171] font-medium border-b border-[#B3B3B3]"
                           >
-                            {user.status === "Active" ? (
-                              <>
-                                <MdBlock className="w-4 h-4" /> Block
-                              </>
-                            ) : (
-                              <>
-                                <GrRotateLeft className="w-4 h-4" /> Unblock
-                              </>
-                            )}
+                            <FiEdit2 className="w-4 h-4" /> Edit
+                          </button>
+                          <button onClick={(e) => { e.stopPropagation(); handleDelete(index) }} className="w-full cursor-pointer flex items-center gap-2 pl-[12px] py-[12px] text-[#DB2828] font-medium border-b border-[#B3B3B3]">
+                            <RiDeleteBinLine className="w-4 h-4" /> Delete
                           </button>
                         </div>
                       )}
@@ -345,7 +288,7 @@ const AllergenDatabase: React.FC = () => {
               </select>
             </div>
             <div className="text-[#313131] text-[14px] font-normal">
-              {startIndex + 1} - {Math.min(startIndex + itemsPerPage, data.length)} of {data.length} items
+              {startIndex + 1} - {Math.min(startIndex + itemsPerPage, formDataList.length)} of {formDataList.length} items
             </div>
           </div>
           <div className="flex flex-wrap justify-center items-center gap-2">

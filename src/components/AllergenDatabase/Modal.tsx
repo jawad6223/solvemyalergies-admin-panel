@@ -47,7 +47,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, 
                                                         {formData.symptoms?.map((symptom, idx) => (
                                                             <div
                                                                 key={idx}
-                                                                className="bg-transparent border border-[#11401C] rounded-full px-[12px] py-1 flex items-center text-sm text-[#333333]"
+                                                                className="bg-transparent border border-[#14A155] font-normal rounded-full px-[12px] py-1 flex items-center text-[12px] text-[#333333]"
                                                             >
                                                                 {symptom}
                                                                 <button
