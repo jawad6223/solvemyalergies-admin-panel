@@ -221,7 +221,7 @@ const AllergenDatabase: React.FC = () => {
                     </label>
                   </td>
                   <td className="px-4 py-4 text-left whitespace-nowrap font-medium text-[#484C52]">
-                    {user.title}
+                    #A{index + 1}
                   </td>
                   <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.title}</td>
                   <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">
