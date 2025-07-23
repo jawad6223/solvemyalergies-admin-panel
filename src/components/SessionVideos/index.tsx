@@ -39,13 +39,6 @@ const EducationalVideos: React.FC = () => {
     setIsModalOpen(false);
   };
 
-  // const handleChange = (field: string, value: string) => {
-  //   setCurrentForm((prev) => ({
-  //     ...prev,
-  //     [field === "Title" ? "title" : field === "Description" ? "description" : field]: value,
-  //   }));
-  // };
-
   const handleChange = (field: string, value: string) => {
     if (field === "Symptoms Tags") {
       const trimmed = value.trim();
@@ -70,9 +63,6 @@ const EducationalVideos: React.FC = () => {
       symptoms: prev.symptoms.filter(symptom => symptom !== symptomToRemove),
     }));
   };
-
-
-
 
   const handleVideoUpload = (files: FileList | null) => {
     if (!files) return;
