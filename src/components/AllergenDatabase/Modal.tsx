@@ -14,9 +14,10 @@ type ModalProps = {
     newSymptom: string;
     setNewSymptom: React.Dispatch<React.SetStateAction<string>>;
     handleRemoveSymptom: (symptom: string) => void;
+    editingIndex: number | null;
 };
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, handleSave, newSymptom, handleRemoveSymptom, setNewSymptom }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, handleSave, newSymptom, handleRemoveSymptom, setNewSymptom, editingIndex }) => {
 
     if (!isOpen) return null;
 
@@ -95,7 +96,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, 
                 </div>
                 <div className="mt-6 flex justify-center">
                     <button onClick={handleSave} className="rounded-full px-[24px] py-[8px] bg-transparent border border-[#11401C] text-[#11401C] cursor-pointer font-semibold text-center text-[14px]">
-                        {formData.title ? 'Edit Details' : 'Save Details'}
+                        {editingIndex !== null ? 'Edit Details' : 'Save Details'}
                     </button>
                 </div>
             </div>

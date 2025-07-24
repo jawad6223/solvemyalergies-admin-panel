@@ -354,6 +354,7 @@ const AllergenDatabase: React.FC = () => {
         newSymptom={newSymptom}
         setNewSymptom={setNewSymptom}
         handleRemoveSymptom={handleRemoveSymptom}
+        editingIndex={editingIndex}
       />
       {deleteModalOpen && deleteIndex !== null && (
         <div className="fixed inset-0 bg-[#BABBBB]/40 bg-opacity-50 flex items-center justify-center z-30">
