@@ -22,7 +22,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, 
 
     return (
         <div className="fixed inset-0 bg-[#BABBBB]/40 bg-opacity-50 flex items-center justify-center z-30">
-            <div className="bg-white rounded-lg px-4 py-3 w-full max-w-2xl relative max-h-[42.7rem] overflow-y-auto scrollbar-hide">
+            <div className="bg-white rounded-lg px-4 py-3 w-full max-w-xl relative max-h-[42.7rem] overflow-y-auto scrollbar-hide">
                 <div onClick={onClose} className="cursor-pointer absolute right-3 top-3 text-[24px] text-[#1C274C] hover:text-[#11401C]">
                     <IoIosCloseCircleOutline />
                 </div>
