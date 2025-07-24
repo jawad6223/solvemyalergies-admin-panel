@@ -183,112 +183,113 @@ const AllergenDatabase: React.FC = () => {
   return (
     <div className="">
       <BreadCrum onSearch={setSearchTerm} setSelectedFilter={setSelectedFilter} selectedFilter={selectedFilter} onOpen={handleOpenModal} />
-      <div className="overflow-x-auto rounded-lg border border-[#CCCCCC] mt-4">
-        <table className="min-w-full text-sm text-center">
-          <thead className="text-[#484C52] font-medium bg-[#F2F2F2] border-b border-[#CCCCCC]">
-            <tr>
-              <th className="px-4 py-4">
-                <label className="inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formDataList.length > 0 && selectedRows.length === formDataList.length}
-                    onChange={toggleAllCheckboxes}
-                    className="peer hidden"
-                  />
-                  <div className="w-4 h-4 rounded border border-[#828282] bg-white flex items-center justify-center peer-checked:border-[#21BA45] peer-checked:bg-[#21BA45]">
-                    <Image src="/images/User/tick.svg" alt="check" width={12} height={7} />
-                  </div>
-                </label>
-              </th>
-              <th
-                className={`px-4 py-4 cursor-pointer text-left whitespace-nowrap`}
-              >
-                Allergen ID
-              </th>
-              <th className="px-4 py-4 whitespace-nowrap">Allergen Name</th>
-              <th className="px-4 py-4 whitespace-nowrap">Common Symptoms</th>
-              <th className="px-4 py-4 whitespace-nowrap">Added Date</th>
-              <th className="px-4 py-4 whitespace-nowrap">Status</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-[#CCCCCC]">
-            {filteredData.length === 0 ? (
+      <div className="relative mt-4">
+        <div className="overflow-x-auto rounded-lg border border-[#CCCCCC]">
+          <table className="min-w-full text-sm text-center">
+            <thead className="text-[#484C52] font-medium bg-[#F2F2F2] border-b border-[#CCCCCC]">
               <tr>
-                <td colSpan={6} className="text-center text-[#222222] font-medium py-2">
-                  No Data Available
-                </td>
-              </tr>
-            ) : (
-              currentItems.map((user, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-4 py-4">
-                    <label className="inline-flex items-center cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={selectedRows.includes(user.title)}
-                        onChange={() => toggleCheckbox(user.title)}
-                        className="peer hidden"
-                      />
-                      <div className="w-4 h-4 rounded border border-[#828282] bg-white flex items-center justify-center peer-checked:border-[#21BA45] peer-checked:bg-[#21BA45]">
-                        <Image src="/images/User/tick.svg" alt="check" width={12} height={7} />
-                      </div>
-                    </label>
-                  </td>
-                  <td className="px-4 py-4 text-left whitespace-nowrap font-medium text-[#484C52]">
-                    #A{index + 1}
-                  </td>
-                  <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.title}</td>
-                  <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">
-                    {Array.isArray(user.symptoms) ? user.symptoms.join(", ") : ""}
-                  </td>
-                  <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">
-                    {"date" in user && user.date
-                      ? new Date(user.date as string).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric"
-                      })
-                      : ""}
-                  </td>
-                  <td className="px-4 py-4 flex justify-center whitespace-nowrap">
-                    <div className="relative" ref={dropdownRef} data-dropdown-index={index}>
-                      <button className="text-[#000000] cursor-pointer" onClick={() => toggleDropdown(index)}>
-                        <HiOutlineDotsHorizontal className="w-5 h-5" />
-                      </button>
-                      {openDropdownIndex === index && (
-                        <div className="absolute right-0 mt-0 w-[127px] bg-white rounded-[6px] shadow-lg border border-[#B3B3B3] z-50">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              // handleView(user.title);
-                            }}
-                            className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#11401C] font-medium border-b border-[#B3B3B3]"
-                          >
-                            <AiOutlineEye className="w-4 h-4" /> View
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleEdit(index);
-                            }}
-                            className="w-full cursor-pointer flex items-center gap-2 pl-[12px] py-[12px] text-[#717171] font-medium border-b border-[#B3B3B3]"
-                          >
-                            <FiEdit2 className="w-4 h-4" /> Edit
-                          </button>
-                          <button onClick={(e) => { e.stopPropagation(); handleDelete(index) }} className="w-full cursor-pointer flex items-center gap-2 pl-[12px] py-[12px] text-[#DB2828] font-medium border-b border-[#B3B3B3]">
-                            <RiDeleteBinLine className="w-4 h-4" /> Delete
-                          </button>
-                        </div>
-                      )}
+                <th className="px-4 py-4">
+                  <label className="inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formDataList.length > 0 && selectedRows.length === formDataList.length}
+                      onChange={toggleAllCheckboxes}
+                      className="peer hidden"
+                    />
+                    <div className="w-4 h-4 rounded border border-[#828282] bg-white flex items-center justify-center peer-checked:border-[#21BA45] peer-checked:bg-[#21BA45]">
+                      <Image src="/images/User/tick.svg" alt="check" width={12} height={7} />
                     </div>
+                  </label>
+                </th>
+                <th
+                  className={`px-4 py-4 cursor-pointer text-left whitespace-nowrap`}
+                >
+                  Allergen ID
+                </th>
+                <th className="px-4 py-4 whitespace-nowrap">Allergen Name</th>
+                <th className="px-4 py-4 whitespace-nowrap">Common Symptoms</th>
+                <th className="px-4 py-4 whitespace-nowrap">Added Date</th>
+                <th className="px-4 py-4 whitespace-nowrap">Status</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-[#CCCCCC]">
+              {filteredData.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="text-center text-[#222222] font-medium py-2">
+                    No Data Available
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                currentItems.map((user, index) => (
+                  <tr key={index} className="hover:bg-gray-50">
+                    <td className="px-4 py-4">
+                      <label className="inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={selectedRows.includes(user.title)}
+                          onChange={() => toggleCheckbox(user.title)}
+                          className="peer hidden"
+                        />
+                        <div className="w-4 h-4 rounded border border-[#828282] bg-white flex items-center justify-center peer-checked:border-[#21BA45] peer-checked:bg-[#21BA45]">
+                          <Image src="/images/User/tick.svg" alt="check" width={12} height={7} />
+                        </div>
+                      </label>
+                    </td>
+                    <td className="px-4 py-4 text-left whitespace-nowrap font-medium text-[#484C52]">
+                      #A{index + 1}
+                    </td>
+                    <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">{user.title}</td>
+                    <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">
+                      {Array.isArray(user.symptoms) ? user.symptoms.join(", ") : ""}
+                    </td>
+                    <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">
+                      {"date" in user && user.date
+                        ? new Date(user.date as string).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric"
+                        })
+                        : ""}
+                    </td>
+                    <td className="px-4 py-4 flex justify-center whitespace-nowrap">
+                      <div ref={dropdownRef} data-dropdown-index={index}>
+                        <button className="text-[#000000] cursor-pointer" onClick={() => toggleDropdown(index)}>
+                          <HiOutlineDotsHorizontal className="w-5 h-5" />
+                        </button>
+                        {openDropdownIndex === index && (
+                          <div className="absolute right-[4.5rem] mt-0 w-[127px] bg-white rounded-[6px] shadow-lg border border-[#B3B3B3] z-50">
+                            <button
+                              // onClick={(e) => {
+                              //   e.stopPropagation();
+                              //   // handleView(user.title);
+                              // }}
+                              className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#11401C] font-medium border-b border-[#B3B3B3]"
+                            >
+                              <AiOutlineEye className="w-4 h-4" /> View
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleEdit(index);
+                              }}
+                              className="w-full cursor-pointer flex items-center gap-2 pl-[12px] py-[12px] text-[#717171] font-medium border-b border-[#B3B3B3]"
+                            >
+                              <FiEdit2 className="w-4 h-4" /> Edit
+                            </button>
+                            <button onClick={(e) => { e.stopPropagation(); handleDelete(index) }} className="w-full cursor-pointer flex items-center gap-2 pl-[12px] py-[12px] text-[#DB2828] font-medium border-b border-[#B3B3B3]">
+                              <RiDeleteBinLine className="w-4 h-4" /> Delete
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
-
       {filteredData.length > 10 && (
         <div className="flex flex-wrap md:flex-nowrap items-center justify-between mt-3 gap-4 px-[28px]">
           <div className="flex flex-wrap items-center gap-2">
