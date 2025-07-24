@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { AllergenDatabaseModalData } from "@/data/AllergenDatabase";
-import { MdDeleteOutline } from "react-icons/md";
 
 type ModalProps = {
     isOpen: boolean;
@@ -30,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, 
                 <div>
                     {AllergenDatabaseModalData.map((section, sectionIndex) => (
                         <div key={sectionIndex}>
-                            <h2 className="text-[24px] font-semibold text-[#11401C] mt-3">
+                            <h2 className="text-[24px] font-semibold text-[#11401C]">
                                 {section.section}
                             </h2>
                             <div className="grid grid-cols-1 gap-2 mt-2">

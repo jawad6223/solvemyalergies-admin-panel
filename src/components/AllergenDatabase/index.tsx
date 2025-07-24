@@ -10,6 +10,7 @@ import Modal from "./Modal";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 
 const AllergenDatabase: React.FC = () => {
@@ -33,6 +34,9 @@ const AllergenDatabase: React.FC = () => {
   const [editingSource, setEditingSource] = useState<"upload" | null>(null);
   const [newSymptom, setNewSymptom] = useState("");
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
+
 
   const handleOpenModal = () => {
     setCurrentForm({ ...initialFormData });
@@ -77,7 +81,6 @@ const AllergenDatabase: React.FC = () => {
       setIsModalOpen(false);
       return;
     }
-
     if (editingIndex !== null && editingSource !== null) {
       if (editingSource === "upload") {
         setFormDataList((prev) =>
@@ -85,7 +88,6 @@ const AllergenDatabase: React.FC = () => {
         );
       }
     } else {
-      // Add date only for new entries
       setFormDataList((prev) => [
         ...prev,
         { ...currentForm, date: new Date().toISOString() }
@@ -108,11 +110,23 @@ const AllergenDatabase: React.FC = () => {
   };
 
   const handleDelete = (index: number) => {
-    if (editingSource === "upload") {
-      setFormDataList((prev) => prev.filter((_, i) => i !== index));
+    setDeleteIndex(index);
+    setDeleteModalOpen(true);
+    setOpenDropdownIndex(null);
+  };
+
+  const handleConfirmDelete = () => {
+    if (deleteIndex !== null) {
+      setFormDataList((prev) => prev.filter((_, i) => i !== deleteIndex));
+      setDeleteIndex(null);
+      setDeleteModalOpen(false);
     }
   };
 
+  const handleCloseDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setDeleteIndex(null);
+  };
 
   const filteredData = formDataList
     .filter(user =>
@@ -230,10 +244,10 @@ const AllergenDatabase: React.FC = () => {
                   <td className="px-4 py-4 text-[#484C52] font-medium text-[14px] whitespace-nowrap">
                     {"date" in user && user.date
                       ? new Date(user.date as string).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric"
-                        })
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric"
+                      })
                       : ""}
                   </td>
                   <td className="px-4 py-4 flex justify-center whitespace-nowrap">
@@ -327,8 +341,8 @@ const AllergenDatabase: React.FC = () => {
             </button>
           </div>
         </div>
-      )
-      }
+      )}
+
       <Modal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -339,6 +353,61 @@ const AllergenDatabase: React.FC = () => {
         setNewSymptom={setNewSymptom}
         handleRemoveSymptom={handleRemoveSymptom}
       />
+      {deleteModalOpen && deleteIndex !== null && (
+        <div className="fixed inset-0 bg-[#BABBBB]/40 bg-opacity-50 flex items-center justify-center z-30">
+          <div className="bg-white rounded-lg px-4 py-3 w-full max-w-lg relative">
+            <div onClick={handleCloseDeleteModal} className="cursor-pointer absolute right-3 top-3 text-[24px] text-[#1C274C] hover:text-[#11401C]">
+              <IoIosCloseCircleOutline />
+            </div>
+            <h2 className="text-[24px] font-semibold text-[#11401C]">Allergen Details</h2>
+            <div className="space-y-2 mt-3">
+              <div className="flex items-center gap-1">
+                <p className="text-[#1E1E1E] font-medium">Allergen Name:</p>
+                <h2 className="text-[18px] font-medium text-[#11401C]">
+                  {formDataList[deleteIndex]?.title}
+                </h2>
+              </div>
+              <div className="flex items-center gap-1">
+                <p className="text-[#1E1E1E] font-medium">Added Date:</p>
+                <h2 className="text-[18px] font-medium text-[#11401C]">
+                  {(() => {
+                    const item = formDataList[deleteIndex];
+                    if (item && "date" in item && item.date) {
+                      try {
+                        return new Date((item as any).date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+                      } catch {
+                        return "N/A";
+                      }
+                    }
+                    return "N/A";
+                  })()}
+                </h2>
+              </div>
+              <div>
+                <p className="text-[#1E1E1E] font-medium mb-2">Common Symptoms:</p>
+                <div className="flex flex-wrap gap-2">
+                  {formDataList[deleteIndex]?.symptoms?.map((symptom, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-transparent border border-[#14A155] font-normal rounded-full px-[12px] py-1 flex items-center text-[12px] text-[#333333]"
+                    >
+                      {symptom}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-4 flex justify-center">
+                <button
+                  onClick={handleConfirmDelete}
+                  className="rounded-full px-[24px] py-[8px] text-[#DB3B21] border border-[#DB3B21] cursor-pointer font-semibold text-center text-[14px]"
+                >
+                  Delete Allergen
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
