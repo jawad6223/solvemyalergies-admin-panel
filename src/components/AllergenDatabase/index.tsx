@@ -107,6 +107,7 @@ const AllergenDatabase: React.FC = () => {
     setEditingIndex(index);
     setEditingSource("upload");
     setIsModalOpen(true);
+    setOpenDropdownIndex(null);
   };
 
   const handleDelete = (index: number) => {

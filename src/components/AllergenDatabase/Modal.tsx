@@ -95,7 +95,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, 
                 </div>
                 <div className="mt-6 flex justify-center">
                     <button onClick={handleSave} className="rounded-full px-[24px] py-[8px] bg-transparent border border-[#11401C] text-[#11401C] cursor-pointer font-semibold text-center text-[14px]">
-                        Save Details
+                        {formData.title ? 'Edit Details' : 'Save Details'}
                     </button>
                 </div>
             </div>
