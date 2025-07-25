@@ -21,6 +21,7 @@ type ModalProps = {
 };
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, handleSave, newSymptom, handleRemoveSymptom, setNewSymptom, editingIndex }) => {
+    
     const [isSymptomFocused, setIsSymptomFocused] = useState(false);
 
     if (!isOpen) return null;
@@ -78,7 +79,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, 
                                                         rows={3}
                                                         className="border border-[#8E8E8E] rounded-2xl py-2 focus-within:ring-1 focus-within:ring-[#11401C] focus-within:border-[#11401C] transition-all px-3 w-full placeholder:text-[#B1A9A9] outline-none text-[#222222]"
                                                     />
-                                                    {isSymptomFocused && <p className="text-[12px]">After typing, press Enter.</p>}
+                                                    {isSymptomFocused && <p className="text-[12px] text-[#333333]">After typing, press Enter.</p>}
                                                 </div>
                                             ) : (
                                                 <div className="border border-[#8E8E8E] rounded-full focus-within:ring-1 focus-within:ring-[#11401C] focus-within:border-[#11401C] transition-all px-3 h-[40px] w-full flex items-center gap-2">

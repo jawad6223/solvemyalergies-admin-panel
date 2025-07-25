@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react";
 import Image from "next/image";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { SessionVideosModalData } from "@/data/EducationalVideo";
@@ -25,6 +28,7 @@ type ModalProps = {
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, handleDrop, handleFileSelect, handleRemoveVideo, handleSave, handleSaveDraft, newSymptom, handleRemoveSymptom, setNewSymptom }) => {
 
+    const [isSymptomFocused, setIsSymptomFocused] = useState(false);
     if (!isOpen) return null;
 
     return (
@@ -86,9 +90,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, formData, handleChange, 
                                                                 handleChange("Symptoms Tags", newSymptom);
                                                             }
                                                         }}
+                                                        onFocus={() => setIsSymptomFocused(true)}
+                                                        onBlur={() => setIsSymptomFocused(false)}
                                                         rows={3}
                                                         className="border border-[#8E8E8E] rounded-2xl py-2 focus-within:ring-1 focus-within:ring-[#11401C] focus-within:border-[#11401C] transition-all px-3 w-full placeholder:text-[#B1A9A9] outline-none text-[#222222]"
                                                     />
+                                                    {isSymptomFocused && <p className="text-[12px] text-[#333333]">After typing, press Enter.</p>}
                                                 </div>
                                             ) : isFileUpload ? (
                                                 <div className="border border-[#8E8E8E] rounded-2xl focus-within:ring-1 focus-within:ring-[#11401C] focus-within:border-[#11401C] transition-all p-6 w-full">
