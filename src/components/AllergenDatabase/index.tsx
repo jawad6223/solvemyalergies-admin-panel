@@ -274,10 +274,6 @@ const AllergenDatabase: React.FC = () => {
                           <div className="absolute right-[4.5rem] mt-0 w-[127px] bg-white rounded-[6px] shadow-lg border border-[#B3B3B3] z-50">
                             <button
                               onClick={(e) => { e.stopPropagation(); handleDelete(index) }}
-                              // onClick={(e) => {
-                              //   e.stopPropagation();
-                              //   // handleView(user.title);
-                              // }}
                               className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#11401C] font-medium border-b border-[#B3B3B3]"
                             >
                               <AiOutlineEye className="w-4 h-4" /> View
