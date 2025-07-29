@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react";
-// import { useRouter } from "next/navigation";
 import Image from "next/image";
 import BreadCrum from "./BreadCrum";
 import { AiOutlineEye } from 'react-icons/ai';
@@ -11,12 +10,15 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { MdOutlineBathroom, MdClose } from "react-icons/md";
+import { TiTick } from "react-icons/ti";
 
 
 const AllergenDatabase: React.FC = () => {
 
   // const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ModalOpen, setModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [selectedRows, setSelectedRows] = useState<string[]>([])
@@ -36,6 +38,17 @@ const AllergenDatabase: React.FC = () => {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
+
+
+  const handleOpen = (index: number) => {
+    setDeleteIndex(index);
+    setModalOpen(true);
+    setOpenDropdownIndex(null);
+  };
+
+  const handleClose = () => {
+    setModalOpen(false);
+  };
 
 
   const handleOpenModal = () => {
@@ -260,6 +273,7 @@ const AllergenDatabase: React.FC = () => {
                         {openDropdownIndex === index && (
                           <div className="absolute right-[4.5rem] mt-0 w-[127px] bg-white rounded-[6px] shadow-lg border border-[#B3B3B3] z-50">
                             <button
+                              onClick={(e) => { e.stopPropagation(); handleDelete(index) }}
                               // onClick={(e) => {
                               //   e.stopPropagation();
                               //   // handleView(user.title);
@@ -277,7 +291,7 @@ const AllergenDatabase: React.FC = () => {
                             >
                               <FiEdit2 className="w-4 h-4" /> Edit
                             </button>
-                            <button onClick={(e) => { e.stopPropagation(); handleDelete(index) }} className="w-full cursor-pointer flex items-center gap-2 pl-[12px] py-[12px] text-[#DB2828] font-medium border-b border-[#B3B3B3]">
+                            <button onClick={(e) => { e.stopPropagation(); handleOpen(index) }}  className="w-full cursor-pointer flex items-center gap-2 pl-[12px] py-[12px] text-[#DB2828] font-medium border-b border-[#B3B3B3]">
                               <RiDeleteBinLine className="w-4 h-4" /> Delete
                             </button>
                           </div>
@@ -407,6 +421,32 @@ const AllergenDatabase: React.FC = () => {
                   Delete Allergen
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {ModalOpen && deleteIndex !== null && (
+        <div className="fixed inset-0 z-20 flex items-center justify-center bg-[#BABBBB]/40 bg-opacity-50">
+          <div className="bg-white rounded-xl p-6 w-80">
+            <h2 className="text-lg font-semibold text-center">
+              Are you sure you want to delete?
+            </h2>
+            <div className="flex justify-center items-center gap-3 mt-3">
+              <button
+                onClick={handleConfirmDelete}
+                className="px-[16px] py-[7px] border border-[#DB2828] text-[#DB2828] rounded-full font-medium flex items-center justify-center gap-1 cursor-pointer"
+              >
+                <TiTick />
+                Yes
+              </button>
+              <button
+                onClick={handleClose}
+                className="px-[16px] py-[7px] border border-[#2185D0] text-[#989898] hover:text-[#2185D0] rounded-full transition cursor-pointer flex items-center justify-center gap-1"
+              >
+                <MdClose />
+                No
+              </button>
             </div>
           </div>
         </div>
