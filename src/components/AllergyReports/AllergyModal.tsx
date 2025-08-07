@@ -3,8 +3,12 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 
 interface RewardsModalProps {
     isOpen: boolean;
+    selectedIndex: number | null;
     onClose: () => void;
+    toggleBlockStatus: (id: string) => void;
+    handleOpen: (index: number) => void;
     data: {
+        id: string;
         title: string;
         image: string;
         name: string;
@@ -22,7 +26,7 @@ interface RewardsModalProps {
     };
 }
 
-const AllergyModal: React.FC<RewardsModalProps> = ({ isOpen, onClose, data }) => {
+const AllergyModal: React.FC<RewardsModalProps> = ({ isOpen, onClose, data, selectedIndex, handleOpen, toggleBlockStatus }) => {
     if (!isOpen) return null;
 
     return (
@@ -79,16 +83,16 @@ const AllergyModal: React.FC<RewardsModalProps> = ({ isOpen, onClose, data }) =>
                     </div>
                 </div>
                 <div className="flex justify-center gap-4 mt-6">
-                    <button className="border border-[#11401C] cursor-pointer font-semibold text-[14px] text-[#11401C] px-[24px] py-[8px] rounded-full">
+                    <button onClick={onClose} className="border border-[#11401C] cursor-pointer font-semibold text-[14px] text-[#11401C] px-[24px] py-[8px] rounded-full">
                         Approve
                     </button>
-                    <button className="border border-[#859B5B] cursor-pointer text-[#859B5B] font-semibold text-[14px] px-[24px] py-[8px] rounded-full">
+                    <button onClick={() => {selectedIndex !== null && toggleBlockStatus(data.id); onClose()}} className="border border-[#859B5B] cursor-pointer text-[#859B5B] font-semibold text-[14px] px-[24px] py-[8px] rounded-full">
                         Reject
                     </button>
                     <button className="border border-[#11401C] cursor-pointer text-[#11401C] font-bold px-[24px] py-[8px] rounded-full">
                         Contact User
                     </button>
-                    <button className="border border-[#DB2828] cursor-pointer text-[#DB2828] font-bold px-[24px] py-[8px] rounded-full">
+                    <button onClick={() => {selectedIndex !== null && handleOpen(selectedIndex); onClose() }} className="border border-[#DB2828] cursor-pointer text-[#DB2828] font-bold px-[24px] py-[8px] rounded-full">
                         Delete Report
                     </button>
                 </div>

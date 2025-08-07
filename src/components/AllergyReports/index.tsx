@@ -46,7 +46,6 @@ const AllergyReports: React.FC = () => {
     }
   };
 
-
   const filteredData = data
     .filter(user =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -341,7 +340,10 @@ const AllergyReports: React.FC = () => {
       {viewmodalOpen && selectedIndex !== null && (
         <AllergyModal
           isOpen={viewmodalOpen}
+          selectedIndex={selectedIndex}
           onClose={() => setViewModalOpen(false)}
+          toggleBlockStatus={toggleBlockStatus}
+          handleOpen={handleOpen}
           data={AllergyReportsModalData[selectedIndex]}
         />
       )}

@@ -174,6 +174,7 @@ export const AllergyReportsData: AllergyReportsItem[] = [
 ];
 
 export interface AllergyReportsModalItem {
+    id: string;
     title: string;
     image: string;
     name: string;
@@ -192,6 +193,7 @@ export interface AllergyReportsModalItem {
 
 export const AllergyReportsModalData: AllergyReportsModalItem[] = [
     {
+        id: "#A202020",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -222,6 +224,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202021",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -252,6 +255,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202022",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -282,6 +286,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202023",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -312,6 +317,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202024",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -342,6 +348,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202025",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -372,6 +379,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202026",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -402,6 +410,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202027",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -432,6 +441,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202028",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -462,6 +472,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202029",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -492,6 +503,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202030",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -522,6 +534,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202031",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -552,6 +565,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202032",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -582,6 +596,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202033",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -612,6 +627,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202034",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -642,6 +658,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202035",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -672,6 +689,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202036",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -702,6 +720,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202037",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -732,6 +751,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202038",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
@@ -762,6 +782,7 @@ export const AllergyReportsModalData: AllergyReportsModalItem[] = [
         feedback: "I am facing severe headache",
     },
     {
+        id: "#A202039",
         title: "User Profile",
         image: "/images/Rewards/person.svg",
         name: "Marilyn Herwitz",
