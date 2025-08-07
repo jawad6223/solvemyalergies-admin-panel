@@ -107,130 +107,132 @@ const UserManagement: React.FC = () => {
           {data.length} Total Users
         </p>
       </div>
-      <div className="overflow-x-auto rounded-lg border border-[#CCCCCC] mt-4">
-        <table className="min-w-full text-sm text-center">
-          <thead className="text-[#484C52] font-medium bg-white border-b border-[#CCCCCC]">
-            <tr>
-              <th className="px-4 py-3">
-                <label className="inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.length === data.length}
-                    onChange={toggleAllCheckboxes}
-                    className="peer hidden"
-                  />
-                  <div className="w-4 h-4 rounded border border-[#828282] bg-white flex items-center justify-center peer-checked:border-[#21BA45] peer-checked:bg-[#21BA45]">
-                    <Image src="/images/User/tick.svg" alt="check" width={12} height={7} />
-                  </div>
-                </label>
-              </th>
-              <th
-                className={`px-4 py-3 cursor-pointer whitespace-nowrap flex items-center justify-between ${sortOrder === 'asc' ? 'bg-[#F2F3F7]' : ''}`}
-                onClick={handleSort}
-              >
-                Name
-                {sortOrder === 'asc' ? (
-                  <FaArrowUp className="text-xs text-gray-600" />
-                ) : (
-                  <FaArrowDown className="text-xs text-gray-600" />
-                )}
-              </th>
-              <th className="px-4 py-3 whitespace-nowrap">Joined On</th>
-              <th className="px-4 py-3 whitespace-nowrap">Status</th>
-              <th className="px-4 py-3 whitespace-nowrap">Last Activity</th>
-              <th className="px-4 py-3 whitespace-nowrap">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-[#CCCCCC]">
-            {filteredData.length === 0 ? (
+      <div className="relative mt-4">
+        <div className="overflow-x-auto rounded-lg border border-[#CCCCCC]">
+          <table className="min-w-full text-sm text-center">
+            <thead className="text-[#484C52] font-medium bg-white border-b border-[#CCCCCC]">
               <tr>
-                <td colSpan={6} className="text-center text-[#222222] font-medium py-2">
-                  No Data Available
-                </td>
-              </tr>
-            ) : (
-              currentItems.map((user, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-4 py-4">
-                    <label className="inline-flex items-center cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={selectedRows.includes(user.email)}
-                        onChange={() => toggleCheckbox(user.email)}
-                        className="peer hidden"
-                      />
-                      <div className="w-4 h-4 rounded border border-[#828282] bg-white flex items-center justify-center peer-checked:border-[#21BA45] peer-checked:bg-[#21BA45]">
-                        <Image src="/images/User/tick.svg" alt="check" width={12} height={7} />
-                      </div>
-                    </label>
-                  </td>
-                  <td className="px-4 py-4 flex items-center gap-3 text-left whitespace-nowrap">
-                    <Image
-                      src={user.image}
-                      alt="User"
-                      width={25}
-                      height={25}
+                <th className="px-4 py-3">
+                  <label className="inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.length === data.length}
+                      onChange={toggleAllCheckboxes}
+                      className="peer hidden"
                     />
-                    <div>
-                      <p className="font-medium text-[#484C52]">{user.name}</p>
-                      <p className="text-[12px] font-normal text-[#808080]">{user.email}</p>
+                    <div className="w-4 h-4 rounded border border-[#828282] bg-white flex items-center justify-center peer-checked:border-[#21BA45] peer-checked:bg-[#21BA45]">
+                      <Image src="/images/User/tick.svg" alt="check" width={12} height={7} />
                     </div>
-                  </td>
-                  <td className="px-4 py-4 text-[#222222] font-medium text-[14px] whitespace-nowrap">{user.date}</td>
-                  <td className="px-4 py-4 flex justify-center whitespace-nowrap">
-                    <div
-                      className={`flex items-center gap-2 px-[22px] w-fit py-[10px] rounded-[12px] text-[14px] font-medium ${user.status === 'Active'
-                        ? 'bg-[#E9F8EC] text-[#21BA45]'
-                        : 'bg-[#FBE9E9] text-[#DB2828]'
-                        }`}
-                    >
-                      <div className="h-[8px] w-[8px] rounded-full bg-current"></div>
-                      {user.status}
-                    </div>
-                  </td>
-                  <td className="px-4 py-4 text-[#222222] font-medium text-[14px] whitespace-nowrap">{user.activity}</td>
-                  <td className="px-4 py-4 flex justify-center whitespace-nowrap">
-                    <div className="relative" ref={dropdownRef} data-dropdown-index={index}>
-                      <button className="text-[#000000] cursor-pointer" onClick={() => toggleDropdown(index)}>
-                        <user.icon className="w-5 h-5" />
-                      </button>
-                      {openDropdownIndex === index && (
-                        <div className="absolute right-0 mt-0 w-[127px] bg-white rounded-[6px] shadow-lg border border-[#B3B3B3] z-50">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleView(user.id);
-                            }}
-                            className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#11401C] font-medium border-b border-[#B3B3B3]"
-                          >
-                            <AiOutlineEye className="w-4 h-4" /> View
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              toggleBlockStatus(user.email);
-                            }}
-                            className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#717171] font-medium border-b border-[#B3B3B3]"
-                          >
-                            {user.status === "Active" ? (
-                              <>
-                                <MdBlock className="w-4 h-4" /> Block
-                              </>
-                            ) : (
-                              <>
-                                <GrRotateLeft className="w-4 h-4" /> Unblock
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      )}
-                    </div>
+                  </label>
+                </th>
+                <th
+                  className={`px-4 py-3 cursor-pointer whitespace-nowrap flex items-center justify-between ${sortOrder === 'asc' ? 'bg-[#F2F3F7]' : ''}`}
+                  onClick={handleSort}
+                >
+                  Name
+                  {sortOrder === 'asc' ? (
+                    <FaArrowUp className="text-xs text-gray-600" />
+                  ) : (
+                    <FaArrowDown className="text-xs text-gray-600" />
+                  )}
+                </th>
+                <th className="px-4 py-3 whitespace-nowrap">Joined On</th>
+                <th className="px-4 py-3 whitespace-nowrap">Status</th>
+                <th className="px-4 py-3 whitespace-nowrap">Last Activity</th>
+                <th className="px-4 py-3 whitespace-nowrap">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-[#CCCCCC]">
+              {filteredData.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="text-center text-[#222222] font-medium py-2">
+                    No Data Available
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                currentItems.map((user, index) => (
+                  <tr key={index} className="hover:bg-gray-50">
+                    <td className="px-4 py-4">
+                      <label className="inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={selectedRows.includes(user.email)}
+                          onChange={() => toggleCheckbox(user.email)}
+                          className="peer hidden"
+                        />
+                        <div className="w-4 h-4 rounded border border-[#828282] bg-white flex items-center justify-center peer-checked:border-[#21BA45] peer-checked:bg-[#21BA45]">
+                          <Image src="/images/User/tick.svg" alt="check" width={12} height={7} />
+                        </div>
+                      </label>
+                    </td>
+                    <td className="px-4 py-4 flex items-center gap-3 text-left whitespace-nowrap">
+                      <Image
+                        src={user.image}
+                        alt="User"
+                        width={25}
+                        height={25}
+                      />
+                      <div>
+                        <p className="font-medium text-[#484C52]">{user.name}</p>
+                        <p className="text-[12px] font-normal text-[#808080]">{user.email}</p>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-[#222222] font-medium text-[14px] whitespace-nowrap">{user.date}</td>
+                    <td className="px-4 py-4 flex justify-center whitespace-nowrap">
+                      <div
+                        className={`flex items-center gap-2 px-[22px] w-fit py-[10px] rounded-[12px] text-[14px] font-medium ${user.status === 'Active'
+                          ? 'bg-[#E9F8EC] text-[#21BA45]'
+                          : 'bg-[#FBE9E9] text-[#DB2828]'
+                          }`}
+                      >
+                        <div className="h-[8px] w-[8px] rounded-full bg-current"></div>
+                        {user.status}
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-[#222222] font-medium text-[14px] whitespace-nowrap">{user.activity}</td>
+                    <td className="px-4 py-4 flex justify-center whitespace-nowrap">
+                      <div ref={dropdownRef} data-dropdown-index={index}>
+                        <button className="text-[#000000] cursor-pointer" onClick={() => toggleDropdown(index)}>
+                          <user.icon className="w-5 h-5" />
+                        </button>
+                        {openDropdownIndex === index && (
+                          <div className="absolute right-[4.5rem] mt-0 w-[127px] bg-white rounded-[6px] shadow-lg border border-[#B3B3B3] z-50">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleView(user.id);
+                              }}
+                              className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#11401C] font-medium border-b border-[#B3B3B3]"
+                            >
+                              <AiOutlineEye className="w-4 h-4" /> View
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleBlockStatus(user.email);
+                              }}
+                              className="w-full cursor-pointer flex gap-2 pl-[12px] py-[12px] text-[#717171] font-medium border-b border-[#B3B3B3]"
+                            >
+                              {user.status === "Active" ? (
+                                <>
+                                  <MdBlock className="w-4 h-4" /> Block
+                                </>
+                              ) : (
+                                <>
+                                  <GrRotateLeft className="w-4 h-4" /> Unblock
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {filteredData.length > 10 && (

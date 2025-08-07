@@ -10,7 +10,7 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { MdOutlineBathroom, MdClose } from "react-icons/md";
+import { MdClose } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 
 
@@ -49,7 +49,6 @@ const AllergenDatabase: React.FC = () => {
   const handleClose = () => {
     setModalOpen(false);
   };
-
 
   const handleOpenModal = () => {
     setCurrentForm({ ...initialFormData });

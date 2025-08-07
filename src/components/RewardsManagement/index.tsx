@@ -56,7 +56,6 @@ const RewardsManagement: React.FC = () => {
         setModalOpen(true);
     };
 
-
     return (
         <div className="">
             <BreadCrum onSearch={setSearchTerm} setSelectedFilter={setSelectedFilter} selectedFilter={selectedFilter} />
