@@ -71,7 +71,7 @@ export const AdminMenus: SidebarMenu[] = [
       },
       {
         id: "allergendatabase",
-        title: "Allergen Database",
+        title: "Symptom Database",
         link: "/allergendatabase",
         icon: Database,
       },
