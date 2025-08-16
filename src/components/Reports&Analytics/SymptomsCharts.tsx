@@ -23,13 +23,11 @@ const options: Highcharts.Options = {
       "Swollen Throat"
     ],
     labels: {
-        useHTML: true,
       style: {
         color: "#222222",
         fontSize: "14px",
         fontWeight: "400",
         whiteSpace: "normal",
-        width: "70px",
         textAlign: "center"
       }
     },
