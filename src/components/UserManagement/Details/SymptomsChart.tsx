@@ -114,7 +114,7 @@ const SymptomsChart = () => {
     }
 
     return (
-        <div className={`rounded-xl shadow-sm border border-gray-200 p-4 bg-white transition-all duration-300 w-[99.7%] ${isFullScreen ? ' fixed inset-0 z-50 flex flex-col justify-center bg-white overflow-hidden' : ''}`}>
+        <div className={`rounded-xl shadow-sm border border-gray-200 p-4 bg-white transition-all duration-300 w-[99.4%] ${isFullScreen ? ' fixed inset-0 z-50 flex flex-col justify-center bg-white overflow-hidden' : ''}`}>
             <div className="flex justify-between items-center mb-4">
                 <p className="text-[#11401C] font-semibold text-[20px]">Symptoms</p>
                 <div className="relative">

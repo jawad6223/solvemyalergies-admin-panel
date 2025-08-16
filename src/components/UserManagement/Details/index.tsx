@@ -100,7 +100,7 @@ const UserManagementDetail: React.FC<UserManagementDetailProps> = ({ id }) => {
                     </div>
 
                 </div>
-                <div className="w-full lg:w-[30%] bg-white rounded-[12px] shadow-sm px-[8px] py-[12px]">
+                <div className="w-full lg:w-[29%] bg-white rounded-[12px] shadow-sm px-[8px] py-[12px]">
                     <Calendar />
                 </div>
             </div>
