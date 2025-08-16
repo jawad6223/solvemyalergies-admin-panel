@@ -8,4 +8,4 @@ const RewardsManagementPage: React.FC = () => {
     )
   }
   
-  export default RewardsManagementPage;
+export default RewardsManagementPage;
