@@ -131,7 +131,7 @@ const BreadCrum: React.FC<BreadCrumProps> = ({ onSearch, onOpen, setSelectedFilt
                         Export
                     </button>
                     <button onClick={onOpen} className="bg-gradient-to-r cursor-pointer from-[#11401C] via-[#1F7332] to-[#859B5B] rounded-full px-[12px] py-[7px] text-white font-bold">
-                        + Add New Allergen
+                        + Add New Symptom
                     </button>
                 </div>
             </div>

@@ -6,68 +6,6 @@ import { TiTick } from 'react-icons/ti';
 import { UserManagementDetailModalData } from '@/data/UserManagement';
 import { IoCloseCircleOutline } from "react-icons/io5";
 
-const ImageUpload = () => {
-    const [image, setImage] = useState<string | null>(null);
-    const [fileName, setFileName] = useState("");
-    const [dateTime, setDateTime] = useState("");
-
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setImage(URL.createObjectURL(file));
-            const base = file.name.split(/[ .]/)[0];
-            setFileName(`${base}.png`);
-            const now = new Date();
-            const date = now.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            const time = now.toLocaleTimeString('en-US', {
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-            });
-            setDateTime(`${date}, ${time}`);
-        }
-    };
-
-    const handleDelete = () => {
-        setImage(null);
-        setFileName("");
-        setDateTime("");
-    };
-
-    return (
-        <div>
-            {!image && (
-                <input type="file" accept="image/*" onChange={handleImageChange} className='cursor-pointer' />
-            )}
-            {image && (
-                <>
-                    <div className="flex flex-col justify-between gap-2">
-                        <div className="flex items-center justify-between">
-                            <span className="text-[#717171] font-medium">{fileName}</span>
-                            <Image
-                                src="/images/User/delete.svg"
-                                alt="delete"
-                                width={20}
-                                height={20}
-                                className="cursor-pointer"
-                                onClick={handleDelete}
-                            />
-                        </div>
-                    </div>
-                    <div className="text-xs text-[#717171] mt-2">
-                        {dateTime}
-                    </div>
-                </>
-            )}
-        </div>
-    );
-};
-
 const Calendar = () => {
     const [selectedDay, setSelectedDay] = useState<number | null>(null);
     const [isOpen, setIsOpen] = useState(false);
@@ -82,11 +20,10 @@ const Calendar = () => {
     };
 
     const closeModal = () => setIsOpen(false);
-
     const totalDays = 42;
 
     return (
-        <div className="">
+        <div>
             <h2 className="text-[#11401C] font-semibold text-[20px] mb-2">Sessions Completed</h2>
             <div className="grid grid-cols-7 gap-2 relative">
                 {Array.from({ length: totalDays }, (_, i) => {
@@ -97,7 +34,7 @@ const Calendar = () => {
                             key={day}
                             onClick={() => openModal(day)}
                             className={`w-10 h-10 cursor-pointer flex items-center justify-center rounded-full font-medium text-[14px] relative transition-all duration-200 
-                ${completed
+                                    ${completed
                                     ? 'bg-gradient-to-r from-[#11401C] to-[#859B5B] text-white'
                                     : 'text-[#859B5B]'
                                 }`}
@@ -171,11 +108,45 @@ const Calendar = () => {
                                     </div>
                                 </div>
                                 <div className='grid grid-cols-2 gap-2'>
-                                    <div className="border border-[#EAEAEA] rounded-[6px] px-[8px] py-[6px]">
-                                        <ImageUpload />
+                                    <div className='flex flex-col gap-2'>
+                                        <div className="border border-[#EAEAEA] flex items-center justify-between rounded-[6px] px-[8px] py-[6px]">
+                                            <div className="text-[#717171] font-medium text-[14px]">image.jpg</div>
+                                            <Image
+                                                src="/images/User/delete.svg"
+                                                alt="delete"
+                                                width={20}
+                                                height={20}
+                                                className="cursor-pointer"
+                                            />
+                                        </div>
+                                        <div className='flex items-center gap-2 text-[12px] font-normal text-[#717171]'>
+                                            <div>
+                                                March, 10, 2024,
+                                            </div>
+                                            <div>
+                                                08:45AM
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="border border-[#EAEAEA] rounded-[6px] px-[8px] py-[6px]">
-                                        <ImageUpload />
+                                    <div className='flex flex-col gap-2'>
+                                        <div className="border border-[#EAEAEA] flex items-center justify-between rounded-[6px] px-[8px] py-[6px]">
+                                            <div className="text-[#717171] font-medium text-[14px]">image.jpg</div>
+                                            <Image
+                                                src="/images/User/delete.svg"
+                                                alt="delete"
+                                                width={20}
+                                                height={20}
+                                                className="cursor-pointer"
+                                            />
+                                        </div>
+                                        <div className='flex items-center gap-2 text-[12px] font-normal text-[#717171]'>
+                                            <div>
+                                                March, 10, 2024,
+                                            </div>
+                                            <div>
+                                                08:45AM
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

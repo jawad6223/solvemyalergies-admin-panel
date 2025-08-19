@@ -74,7 +74,7 @@ const AllergenDatabase: React.FC = () => {
     } else {
       setCurrentForm((prev) => ({
         ...prev,
-        [field === "Allergen Name" ? "title" : field]: value,
+        [field === "Symptom Name" ? "title" : field]: value,
       }));
     }
   };
@@ -217,9 +217,9 @@ const AllergenDatabase: React.FC = () => {
                 <th
                   className={`px-4 py-4 cursor-pointer text-left whitespace-nowrap`}
                 >
-                  Allergen ID
+                  Symptom ID
                 </th>
-                <th className="px-4 py-4 whitespace-nowrap">Allergen Name</th>
+                <th className="px-4 py-4 whitespace-nowrap">Symptom Name</th>
                 <th className="px-4 py-4 whitespace-nowrap">Common Symptoms</th>
                 <th className="px-4 py-4 whitespace-nowrap">Added Date</th>
                 <th className="px-4 py-4 whitespace-nowrap">Status</th>
@@ -371,10 +371,10 @@ const AllergenDatabase: React.FC = () => {
             <div onClick={handleCloseDeleteModal} className="cursor-pointer absolute right-3 top-3 text-[24px] text-[#1C274C] hover:text-[#11401C]">
               <IoIosCloseCircleOutline />
             </div>
-            <h2 className="text-[24px] font-semibold text-[#11401C]">Allergen Details</h2>
+            <h2 className="text-[24px] font-semibold text-[#11401C]">Symptom Details</h2>
             <div className="space-y-2 mt-3">
               <div className="flex items-center gap-1">
-                <p className="text-[#1E1E1E] font-medium">Allergen Name:</p>
+                <p className="text-[#1E1E1E] font-medium">Symptom Name:</p>
                 <h2 className="text-[18px] font-medium text-[#11401C]">
                   {formDataList[deleteIndex]?.title}
                 </h2>
@@ -413,7 +413,7 @@ const AllergenDatabase: React.FC = () => {
                   onClick={handleConfirmDelete}
                   className="rounded-full px-[24px] py-[8px] text-[#DB3B21] border border-[#DB3B21] cursor-pointer font-semibold text-center text-[14px]"
                 >
-                  Delete Allergen
+                  Delete Symptom
                 </button>
               </div>
             </div>

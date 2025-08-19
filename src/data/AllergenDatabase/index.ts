@@ -12,9 +12,9 @@ interface AllergenDatabaseModalFormField {
   
   export const AllergenDatabaseModalData: AllergenDatabaseModalFormSection[] = [
     {
-      section: "Allergen Details",
+      section: "Symptom Details",
       fields: [
-        { label: "Allergen Name", image: "/images/Educational/edit.svg", placeholder: "Enter Allergen Name" },
+        { label: "Symptom Name", image: "/images/Educational/edit.svg", placeholder: "Enter Allergen Name" },
         {
           label: "Common Symptoms",
           placeholder: "Write common symptoms",
