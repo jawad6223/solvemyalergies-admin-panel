@@ -33,7 +33,7 @@ const Header = () => {
 
 
   return (
-    <header className="w-auto h-[70px] fixed top-0 left-[250px] right-0 bg-white shadow-xs px-4 flex items-center justify-between z-20">
+    <header className="fixed top-0 left-[250px] right-0 bg-white shadow-xs px-4 py-4 flex items-center justify-between z-20">
       <div className="flex items-center px-3 gap-2 bg-[#F5F6FA] border border-[#D5D5D5] rounded-full w-[388px] h-[38px] focus-within:ring-1 focus-within:ring-[#11401C] focus-within:border-[#11401C] transition-all">
         <IoIosSearch size={20} />
         <input
