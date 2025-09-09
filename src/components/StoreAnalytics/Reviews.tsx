@@ -164,13 +164,13 @@ const Reviews: React.FC<ReviewsProps> = ({ searchTerm, selectedFilter }) => {
                                                     <user.icon className="w-5 h-5" />
                                                 </button>
                                                 {openDropdownIndex === index && (
-                                                    <div className="absolute right-[3.5rem] mt-4 w-56 bg-white rounded-[6px] shadow-lg border border-[#B3B3B3] z-50">
+                                                    <div className="absolute right-[3.5rem] mt-4 w-fit bg-white rounded-[6px] shadow-lg border border-[#B3B3B3] z-50">
                                                         <button
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 toggleBlockStatus(user.id);
                                                             }}
-                                                            className="w-full cursor-pointer flex items-center gap-2 px-[14px] py-[12px]"
+                                                            className="w-[6.8rem] cursor-pointer flex items-center gap-2 px-[14px] py-[12px]"
                                                         >
                                                             {user.status === "Approved" ? (
                                                                 <div className="text-[#11401C] font-medium flex gap-2 items-center">
@@ -192,7 +192,7 @@ const Reviews: React.FC<ReviewsProps> = ({ searchTerm, selectedFilter }) => {
                                                                 e.stopPropagation();
                                                                 toggleBlockStatus(user.id);
                                                             }}
-                                                            className="w-full cursor-pointer flex items-center gap-2 px-[14px] py-[12px] text-[#717171] font-medium border-t border-[#B3B3B3]"
+                                                            className="w-[6.8rem] cursor-pointer flex items-center gap-2 px-[14px] py-[12px] text-[#717171] font-medium border-t border-[#B3B3B3]"
                                                         >
                                                             {user.status === "Approved" ? (
                                                                 <div className="text-[#DB2828] font-medium flex gap-2 items-center">
