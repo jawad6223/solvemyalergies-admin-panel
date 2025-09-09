@@ -1,6 +1,8 @@
 import { IconType } from "react-icons";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-
+import { IoMdArrowUp } from "react-icons/io";
+import { IoArrowDownOutline } from "react-icons/io5";
+import { MdArrowOutward } from "react-icons/md";
 
 export interface StoreAnalysisItem {
     label: string;
@@ -855,4 +857,49 @@ export const StoreReviewsData: StoresReviewsItem[] = [
         status: "Pending",
         icon: HiOutlineDotsHorizontal,
     },  
+];
+
+export interface StoresSalesItem {
+    name?: string;
+    image?: string;
+    sales: string;
+    number: string;
+    icon: IconType;
+    rating: string;
+    text: string;
+}
+
+export const StoreSalesData: StoresSalesItem[] = [
+    {
+        image: "/images/StoreAnalysis/vector0.svg",
+        sales: "Sales",
+        number: "+84%",
+        icon: IoMdArrowUp,
+        rating: "$ 4,84320",
+        text: "Previous year ($2,294)"
+    },
+    {
+        image: "/images/StoreAnalysis/vector1.svg",
+        sales: "Purchases",
+        number: "+9.2%",
+        icon: IoMdArrowUp,
+        rating: "$ 4,84320",
+        text: "Previous year ($2,294)"
+    },
+    {
+        image: "/images/StoreAnalysis/vector2.svg",
+        sales: "Returns",
+        number: "+1.5%",
+        icon: IoArrowDownOutline,
+        rating: "$ 4,84320",
+        text: "Previous year ($2,294)"
+    },
+    // {
+    //     name: "User Volume",
+    //     number: "120",
+    //     sales: "New Users",
+    //     icon: MdArrowOutward,
+    //     rating: "+19%",
+    //     text: "Your users has grown"
+    // }
 ];

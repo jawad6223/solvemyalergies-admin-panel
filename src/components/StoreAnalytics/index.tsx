@@ -38,7 +38,7 @@ const StoreAnalytics: React.FC = () => {
           <Orders searchTerm={searchTerm} selectedFilter={selectedFilter} />
         }
         {activeIndex === 2 &&
-          <Sales />
+          <Sales searchTerm={searchTerm} />
         }
         {activeIndex === 3 &&
           <Inventory searchTerm={searchTerm} selectedFilter={selectedFilter} />
