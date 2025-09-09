@@ -44,7 +44,7 @@ const StoreAnalytics: React.FC = () => {
           <Inventory searchTerm={searchTerm} selectedFilter={selectedFilter} />
         }
         {activeIndex === 4 &&
-          <Reviews />
+          <Reviews searchTerm={searchTerm} selectedFilter={selectedFilter} />
         }
       </div>
     </div>
