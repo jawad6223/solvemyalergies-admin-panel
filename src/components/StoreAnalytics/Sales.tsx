@@ -149,9 +149,9 @@ const Sales: React.FC<SalesProps> = ({ searchTerm }) => {
                                                     </div>
                                                     {user.name}
                                                 </td>
-                                                <td className="px-4 py-3 text-[#999999] font-medium text-[14px] whitespace-nowrap">{user.sold}</td>
-                                                <td className="px-4 py-3 text-[#999999] font-medium text-[14px] whitespace-nowrap">{user.price}</td>
-                                                <td className="px-4 py-3 text-[#999999] font-medium text-[14px] flex items-center gap-2 whitespace-nowrap">
+                                                <td className="px-4 py-4 text-[#999999] font-medium text-[14px] whitespace-nowrap">{user.sold}</td>
+                                                <td className="px-4 py-4 text-[#999999] font-medium text-[14px] whitespace-nowrap">{user.price}</td>
+                                                <td className="px-4 py-4 text-[#999999] font-medium text-[14px] flex items-center gap-2 whitespace-nowrap">
                                                     <Image src={user.star} alt="check" width={18} height={18} />
                                                     {user.rating}
                                                 </td>
