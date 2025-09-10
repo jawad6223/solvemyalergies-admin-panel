@@ -2,7 +2,6 @@ import { IconType } from "react-icons";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { IoMdArrowUp } from "react-icons/io";
 import { IoArrowDownOutline } from "react-icons/io5";
-import { MdArrowOutward } from "react-icons/md";
 
 export interface StoreAnalysisItem {
     label: string;
@@ -902,4 +901,56 @@ export const StoreSalesData: StoresSalesItem[] = [
     //     rating: "+19%",
     //     text: "Your users has grown"
     // }
+];
+
+export interface StoreSalesProductItem {
+    image: string;
+    name: string;
+    sold: string;
+    price: string;
+    star: string;
+    rating: string;
+}
+
+export const StoreSalesProductData: StoreSalesProductItem[] = [
+    {
+        image: "/images/StoreAnalysis/s.svg",
+        name: "T-Shit",
+        sold: "2.1k",
+        price: "$1,428.24",
+        star: "/images/StoreAnalysis/ss.svg",
+        rating: "5.0",
+    },
+    {
+        image: "/images/StoreAnalysis/s.svg",
+        name: "T-Shit",
+        sold: "2.1k",
+        price: "$1,428.24",
+        star: "/images/StoreAnalysis/ss.svg",
+        rating: "5.0",
+    },
+    {
+        image: "/images/StoreAnalysis/s.svg",
+        name: "T-Shit",
+        sold: "2.1k",
+        price: "$1,428.24",
+        star: "/images/StoreAnalysis/ss.svg",
+        rating: "5.0",
+    },
+    {
+        image: "/images/StoreAnalysis/s.svg",
+        name: "T-Shit",
+        sold: "2.1k",
+        price: "$1,428.24",
+        star: "/images/StoreAnalysis/ss.svg",
+        rating: "5.0",
+    },
+    {
+        image: "/images/StoreAnalysis/s.svg",
+        name: "T-Shit",
+        sold: "2.1k",
+        price: "$1,428.24",
+        star: "/images/StoreAnalysis/ss.svg",
+        rating: "5.0",
+    },  
 ];
