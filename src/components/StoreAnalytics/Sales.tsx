@@ -8,6 +8,8 @@ import Image from "next/image";
 import { IoArrowDownOutline } from "react-icons/io5";
 import { MdArrowOutward } from "react-icons/md";
 import LineChart from "./LineChart";
+import { MdKeyboardArrowDown } from "react-icons/md";
+
 
 interface SalesProps {
     searchTerm: string;
@@ -80,8 +82,13 @@ const Sales: React.FC<SalesProps> = ({ searchTerm }) => {
                 <div className="lg:w-[65%] py-[20px] pl-[36px] pr-[10px] rounded-2xl border border-[#CCCCCC] bg-white">
                     <div className="flex items-center justify-between">
                         <p className="text-[#222222] font-medium text-[20px]">Revenue</p>
+                        <div className="flex items-center gap-2 bg-white shadow-md rounded-lg cursor-pointer px-[8px] py-[8px]">
+                            <Image src="/images/StoreAnalysis/calendar.svg" alt="img" width={12} height={12} />
+                            <p className="text-[#000000] font-normal text-[12px]">July</p>
+                            <MdKeyboardArrowDown className="text-[#000000]" />
+                        </div>
                     </div>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between mt-2">
                         <p className="text-[#B1A9A9] font-normal text-[12px]">Balance</p>
                         <div className="flex items-center gap-2">
                             <div className="flex items-center gap-0.5">
@@ -145,7 +152,7 @@ const Sales: React.FC<SalesProps> = ({ searchTerm }) => {
                                                 <td className="px-4 py-3 text-[#999999] font-medium text-[14px] whitespace-nowrap">{user.sold}</td>
                                                 <td className="px-4 py-3 text-[#999999] font-medium text-[14px] whitespace-nowrap">{user.price}</td>
                                                 <td className="px-4 py-3 text-[#999999] font-medium text-[14px] flex items-center gap-2 whitespace-nowrap">
-                                                        <Image src={user.star} alt="check" width={18} height={18} />
+                                                    <Image src={user.star} alt="check" width={18} height={18} />
                                                     {user.rating}
                                                 </td>
                                             </tr>
