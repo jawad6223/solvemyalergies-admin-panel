@@ -21,11 +21,11 @@ const Sales: React.FC<SalesProps> = ({ searchTerm }) => {
 
     return (
         <div className="flex items-center gap-4 mt-4">
-            <div className="lg:w-[75%] py-[20px] flex items-center rounded-lg border border-[#CCCCCC] shadow-sm">
+            <div className="lg:w-[75%] py-[20px] flex items-center rounded-lg border border-[#CCCCCC] bg-white">
                 {filteredData.map((item, idx) => (
                     <div
                         key={idx}
-                        className={`pl-[37px] pr-[120px] flex flex-col justify-between ${(idx === 0 || idx === 1) ? "border-r border-[#B1A9A9]" : ""}`}
+                        className={`pl-[37px] pr-[110px] flex flex-col justify-between ${(idx === 0 || idx === 1) ? "border-r border-[#B1A9A9]" : ""}`}
                     >
                         <div className="flex flex-col gap-2">
                             {item.image && (
@@ -57,6 +57,19 @@ const Sales: React.FC<SalesProps> = ({ searchTerm }) => {
                     </div>
                 )
                 )}
+            </div>
+            <div className="lg:w-[25%] rounded-lg border border-[#CCCCCC] bg-white">
+                <p className="text-[#000000] font-medium text-[20px] pl-[10px] pt-[10px]">User Volume</p>
+                <div className="flex justify-center mt-[9px]">
+                    <GaugeChart />
+                </div>
+                <div className="flex justify-center gap-2 items-center pb-[8px]">
+                    <p className="text-[#717171] font-normal text-[12px]">Your users has grown</p>
+                    <div className="bg-[#FEF1E8] rounded-lg px-[4px] py-[4px] flex items-center gap-0.5">
+                        <IoArrowDownOutline className="text-[#F2711C]" />
+                        <p className="text-[#F2711C] font-normal text-[12px]">+19%</p>
+                    </div>
+                </div>
             </div>
         </div>
     );

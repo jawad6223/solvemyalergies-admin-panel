@@ -21,36 +21,32 @@ const GaugeChart = () => {
   const options = {
     chart: {
       type: "solidgauge",
-      height: "100%",
+      width: "100%",
+      height: "70%",
       backgroundColor: "transparent",
     },
-
     title: null,
-
     pane: {
       startAngle: -90,
       endAngle: 90,
       background: {
-        backgroundColor: "#E6E9ED", // light grey arc background
-        innerRadius: "60%",
+        backgroundColor: "#E6E9ED",
+        innerRadius: "80%",
         outerRadius: "100%",
         shape: "arc",
       },
     },
-
-    // Disable credits and tooltip
     credits: {
       enabled: false,
     },
     tooltip: {
       enabled: false,
     },
-
     yAxis: {
       min: 0,
-      max: 200, // adjust to your max value
+      max: 200,
       stops: [
-        [1, "#0B3D1F"], // dark green
+        [1, "#0B3D1F"],
       ],
       lineWidth: 0,
       tickWidth: 0,
@@ -63,17 +59,16 @@ const GaugeChart = () => {
         enabled: false,
       },
     },
-
     plotOptions: {
       solidgauge: {
         dataLabels: {
-          y: -35,
+          y: -25,
           borderWidth: 0,
           useHTML: true,
           format:
             '<div style="text-align:center">' +
-            '<span style="font-size:22px; font-weight:bold; color:#333">{y}</span><br/>' +
-            '<span style="font-size:14px; color:#666">New Users</span>' +
+            '<span style="font-size:24px; font-weight:500; color:#404040">{y}</span><br/>' +
+            '<span style="font-size:12px; font-weight:500; color:#404040">New Users</span>' +
             "</div>",
         },
       },
@@ -82,7 +77,7 @@ const GaugeChart = () => {
     series: [
       {
         name: "New Users",
-        data: [120], // your value
+        data: [120],
       },
     ],
   };
