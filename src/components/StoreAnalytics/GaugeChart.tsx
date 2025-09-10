@@ -1,23 +1,35 @@
 "use client";
 
-import React from "react";
+import { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import HighchartsMore from "highcharts/highcharts-more";
-import SolidGauge from "highcharts/modules/solid-gauge";
-
-// Initialize modules safely (handles both ESM and CJS builds)
-const initModule = (mod: any) => {
-  const fn = typeof mod === "function" ? mod : mod?.default;
-  if (typeof fn === "function") {
-    fn(Highcharts);
-  }
-};
-
-initModule(HighchartsMore);
-initModule(SolidGauge);
 
 const GaugeChart = () => {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    const loadModules = async () => {
+      if (typeof window === "undefined") return;
+      try {
+        const more = await import("highcharts/highcharts-more");
+        const solid = await import("highcharts/modules/solid-gauge");
+        const moreInit = (more as any).default || (more as any);
+        const solidInit = (solid as any).default || (solid as any);
+        if (typeof moreInit === "function") moreInit(Highcharts);
+        if (typeof solidInit === "function") solidInit(Highcharts);
+        if (isMounted) setIsReady(true);
+      } catch (e) {
+        // swallow to avoid SSR crashes; component just won't render
+        if (isMounted) setIsReady(false);
+      }
+    };
+    loadModules();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const options = {
     chart: {
       type: "solidgauge",
@@ -81,12 +93,14 @@ const GaugeChart = () => {
 
     series: [
       {
+        type: "solidgauge",
         name: "New Users",
         data: [120], // your value
       },
     ],
   };
 
+  if (!isReady) return null;
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
 
